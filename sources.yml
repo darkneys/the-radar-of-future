@@ -1,0 +1,64 @@
+# Список источников. Чтобы добавить новый, скопируй блок и поменяй поля.
+# type: telegram  -> читает публичный канал через t.me/s/<channel>
+# type: site      -> сначала ищет на странице разметку JSON-LD (Event), потом пробует CSS-селекторы
+# sec: intern | school | summit | case   (раздел сайта по умолчанию)
+# include: слова-фильтры (регулярка), посты без них пропускаются
+defaults:
+  max_age_days: 90
+sources:
+  - name: Яков и Партнёры (канал YnP life)
+    type: telegram
+    channel: YnPlife
+    org: Яков и Партнёры
+    sec: intern
+    country: Россия
+    rf: да
+    tr: проверить
+    include: "стажир|набор|программ|кейс|заявк"
+    enabled: true
+
+  # Добавь сюда каналы МФТИ, Физтех-школы, Сколково, Changellenge, Case-in:
+  # - name: Карьерный центр МФТИ
+  #   type: telegram
+  #   channel: НАЗВАНИЕ_КАНАЛА_БЕЗ_СОБАКИ
+  #   org: МФТИ
+  #   sec: intern
+  #   country: Россия
+  #   rf: да
+  #   tr: проверить
+  #   include: "стажир|школ|кейс|конференц|грант"
+  #   enabled: true
+
+  - name: Leader-ID
+    type: site
+    list_url: https://leader-id.ru
+    org: Leader-ID
+    sec: summit
+    country: Россия
+    rf: да
+    tr: проверить
+    enabled: false   # robots.txt сайта запрещает автоматический сбор
+    # Если на странице нет JSON-LD, найди селекторы командой:
+    #   python parse.py --inspect https://leader-id.ru
+    # и впиши ниже (пример):
+    # selectors: {item: "div.event-card", title: "h3", link: "a", text: "div.desc"}
+
+  - name: Changellenge >>
+    type: site
+    list_url: https://changellenge.com
+    org: Changellenge
+    sec: case
+    country: Россия
+    rf: да
+    tr: проверить
+    enabled: true
+
+  - name: Case-in
+    type: site
+    list_url: https://case-in.ru
+    org: Case-in
+    sec: case
+    country: Россия
+    rf: да
+    tr: проверить
+    enabled: true
