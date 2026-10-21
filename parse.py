@@ -153,6 +153,20 @@ def parse_site(src):
     print(f"  JSON-LD/селекторы: найдено {len(out)}")
     return out
 
+def parse_rss(src):
+    import xml.etree.ElementTree as ET
+    xml = get(src["list_url"])
+    if not xml: return []
+    rx = re.compile(src["include"], re.I) if src.get("include") else None
+    out = []
+    for it in ET.fromstring(xml.encode("utf-8")).iter("item"):
+        title = (it.findtext("title") or "").strip(); link = (it.findtext("link") or "").strip()
+        text = BeautifulSoup(it.findtext("description") or "", "html.parser").get_text(" ")
+        if rx and not rx.search(title + " " + text): continue
+        e = make_event(src, title, title + ". " + text, link or src["list_url"])
+        if e: out.append(e)
+    return out
+
 def inspect(url):
     html = get(url); soup = BeautifulSoup(html, "html.parser")
     print("JSON-LD событий:", len(jsonld_events(soup)))
@@ -173,11 +187,14 @@ def build_standalone():
 def main():
     cfg = yaml.safe_load((ROOT / "sources.yml").read_text(encoding="utf-8"))
     dflt = cfg.get("defaults", {}); events = []
+    extra = ROOT / "sources_table.yml"
+    if extra.exists():
+        cfg["sources"] += (yaml.safe_load(extra.read_text(encoding="utf-8")) or {}).get("sources", [])
     for src in cfg["sources"]:
         if not src.get("enabled", True): continue
         src = {**dflt, **src}; print("•", src["name"])
         try:
-            got = parse_telegram(src) if src["type"] == "telegram" else parse_site(src)
+            got = {"telegram": parse_telegram, "rss": parse_rss}.get(src["type"], parse_site)(src)
             print(f"  найдено: {len(got)}"); events += got
         except Exception as ex:
             print("  ОШИБКА:", ex)

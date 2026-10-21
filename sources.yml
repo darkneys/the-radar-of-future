@@ -1,5 +1,6 @@
 # Список источников. Чтобы добавить новый, скопируй блок и поменяй поля.
 # type: telegram  -> читает публичный канал через t.me/s/<channel>
+# type: rss       -> читает RSS-ленту (list_url = адрес ленты)
 # type: site      -> сначала ищет на странице разметку JSON-LD (Event), потом пробует CSS-селекторы
 # sec: intern | school | summit | case   (раздел сайта по умолчанию)
 # include: слова-фильтры (регулярка), посты без них пропускаются
@@ -29,36 +30,5 @@ sources:
   #   include: "стажир|школ|кейс|конференц|грант"
   #   enabled: true
 
-  - name: Leader-ID
-    type: site
-    list_url: https://leader-id.ru
-    org: Leader-ID
-    sec: summit
-    country: Россия
-    rf: да
-    tr: проверить
-    enabled: false   # robots.txt сайта запрещает автоматический сбор
-    # Если на странице нет JSON-LD, найди селекторы командой:
-    #   python parse.py --inspect https://leader-id.ru
-    # и впиши ниже (пример):
-    # selectors: {item: "div.event-card", title: "h3", link: "a", text: "div.desc"}
-
-  - name: Changellenge >>
-    type: site
-    list_url: https://changellenge.com
-    org: Changellenge
-    sec: case
-    country: Россия
-    rf: да
-    tr: проверить
-    enabled: true
-
-  - name: Case-in
-    type: site
-    list_url: https://case-in.ru
-    org: Case-in
-    sec: case
-    country: Россия
-    rf: да
-    tr: проверить
-    enabled: true
+  # Сюда добавляй источники вручную (например, новые Telegram-каналы).
+  # Остальные источники берутся из таблицы: data/istochniki.xlsx -> python table_to_sources.py -> sources_table.yml

@@ -1,0 +1,1800 @@
+sources:
+- name: Youth Opportunities
+  org: Youth Opportunities
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.youthop.com/
+  enabled: true
+- name: Opportunities for Youth
+  org: Opportunities for Youth
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://opportunitiesforyouth.org/
+  enabled: true
+- name: Eurodesk Opportunity Finder
+  org: Eurodesk Opportunity Finder
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://programmes.eurodesk.eu/en
+  enabled: true
+- name: Opportunity Desk
+  org: Opportunity Desk
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://opportunitydesk.org/
+  enabled: true
+- name: Scholarship Positions
+  org: Scholarship Positions
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://scholarship-positions.com/
+  enabled: true
+- name: DAAD
+  org: DAAD
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.daad.de/en/
+  enabled: true
+- name: Studyportals / Mastersportal
+  org: Studyportals / Mastersportal
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.mastersportal.com/
+  enabled: true
+- name: Erasmus+ / Еврокомиссия
+  org: Erasmus+ / Еврокомиссия
+  sec: summit
+  country: Международно
+  rf: нет (как правило)
+  tr: частично
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://erasmus-plus.ec.europa.eu/
+  enabled: true
+- name: WikiCFP / ConferenceIndex
+  org: WikiCFP / ConferenceIndex
+  sec: summit
+  country: Международно
+  rf: да
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://wikicfp.com/cfp/
+  enabled: true
+- name: Leader-ID
+  org: Leader-ID
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://leader-id.ru/
+  enabled: true
+- name: Timepad
+  org: Timepad
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.timepad.ru/
+  enabled: true
+- name: Changellenge >>
+  org: Changellenge >>
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://changellenge.com/
+  enabled: true
+- name: Case-in
+  org: Case-in
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://case-in.ru/
+  enabled: true
+- name: hh.ru (фильтр «стажировка»)
+  org: hh.ru (фильтр «стажировка»)
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://hh.ru/
+  enabled: true
+- name: Careerspace
+  org: Careerspace
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careerspace.app/
+  enabled: true
+- name: Habr Карьера
+  org: Habr Карьера
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://career.habr.com/
+  enabled: true
+- name: Россия — страна возможностей
+  org: Россия — страна возможностей
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://rsv.ru/
+  enabled: true
+- name: Практика / Работа в России
+  org: Практика / Работа в России
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://trudvsem.ru/
+  enabled: true
+- name: Kariyer.net
+  org: Kariyer.net
+  sec: summit
+  country: Турция
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.kariyer.net/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Youthall
+  org: Youthall
+  sec: summit
+  country: Турция
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.youthall.com/
+  enabled: true
+- name: TÜBİTAK
+  org: TÜBİTAK
+  sec: summit
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://tubitak.gov.tr/
+  enabled: true
+- name: Минмолодёжи и спорта Турции (GSB)
+  org: Минмолодёжи и спорта Турции (GSB)
+  sec: summit
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://gsb.gov.tr/
+  enabled: true
+- name: Wharton (Summer / Academy)
+  org: Wharton (Summer / Academy)
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://academy.wharton.upenn.edu/
+  enabled: true
+- name: LSE Summer School
+  org: LSE Summer School
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.lse.ac.uk/study-at-lse/summer-schools
+  enabled: true
+- name: HEC Paris Summer School
+  org: HEC Paris Summer School
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.hec.edu/en/executive-education/summer-programs
+  enabled: true
+- name: Harvard Summer School
+  org: Harvard Summer School
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://summer.harvard.edu/
+  enabled: true
+- name: Oxford Summer Courses
+  org: Oxford Summer Courses
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.conted.ox.ac.uk/
+  enabled: true
+- name: Cambridge Summer Programmes
+  org: Cambridge Summer Programmes
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ice.cam.ac.uk/
+  enabled: true
+- name: Bocconi Summer School
+  org: Bocconi Summer School
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.unibocconi.eu/wps/wcm/connect/Bocconi/SitoPubblico_EN/Navigation+Tree/Home/Summer+School/
+  enabled: true
+- name: ESADE / IE / IESE (esade.edu)
+  org: ESADE / IE / IESE
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.esade.edu/
+  enabled: true
+- name: ESADE / IE / IESE (ie.edu)
+  org: ESADE / IE / IESE
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ie.edu/
+  enabled: true
+- name: ESADE / IE / IESE (iese.edu)
+  org: ESADE / IE / IESE
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.iese.edu/
+  enabled: true
+- name: Tsinghua / Fudan / Peking Summer (tsinghua.edu.cn)
+  org: Tsinghua / Fudan / Peking Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.tsinghua.edu.cn/en/
+  enabled: true
+- name: Tsinghua / Fudan / Peking Summer (fudan.edu.cn)
+  org: Tsinghua / Fudan / Peking Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.fudan.edu.cn/en/
+  enabled: true
+- name: Tsinghua / Fudan / Peking Summer (english.pku.edu.cn)
+  org: Tsinghua / Fudan / Peking Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://english.pku.edu.cn/
+  enabled: true
+- name: NUS / HKU / CUHK Summer (nus.edu.sg)
+  org: NUS / HKU / CUHK Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.nus.edu.sg/
+  enabled: true
+- name: NUS / HKU / CUHK Summer (hku.hk)
+  org: NUS / HKU / CUHK Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.hku.hk/
+  enabled: true
+- name: NUS / HKU / CUHK Summer (cuhk.edu.hk)
+  org: NUS / HKU / CUHK Summer
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cuhk.edu.hk/english/index.html
+  enabled: true
+- name: EHL / Glion / Les Roches (ehl.edu)
+  org: EHL / Glion / Les Roches
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ehl.edu/
+  enabled: true
+- name: EHL / Glion / Les Roches (glion.edu)
+  org: EHL / Glion / Les Roches
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.glion.edu/
+  enabled: true
+- name: EHL / Glion / Les Roches (lesroches.edu)
+  org: EHL / Glion / Les Roches
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.lesroches.edu/
+  enabled: true
+- name: MIT Professional / Sloan short programs (professional.mit.edu)
+  org: MIT Professional / Sloan short programs
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://professional.mit.edu/
+  enabled: true
+- name: MIT Professional / Sloan short programs (mit.edu)
+  org: MIT Professional / Sloan short programs
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.mit.edu/education/
+  enabled: true
+- name: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО (hse.ru)
+  org: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.hse.ru/
+  enabled: true
+- name: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО (msu.ru)
+  org: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.msu.ru/
+  enabled: true
+- name: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО (spbu.ru)
+  org: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://spbu.ru/
+  enabled: true
+- name: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО (itmo.ru)
+  org: Летние школы ВШЭ, МГУ, СПбГУ, ИТМО
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://itmo.ru/
+  enabled: true
+- name: Сколково (летние школы, МШУ) (skolkovo.ru)
+  org: Сколково (летние школы, МШУ)
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.skolkovo.ru/
+  enabled: true
+- name: Сколково (летние школы, МШУ) (sk.ru)
+  org: Сколково (летние школы, МШУ)
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.sk.ru/
+  enabled: true
+- name: Университет 20.35 / Сириус (2035.university)
+  org: Университет 20.35 / Сириус
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://2035.university/
+  enabled: true
+- name: Университет 20.35 / Сириус (sochisirius.ru)
+  org: Университет 20.35 / Сириус
+  sec: school
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://sochisirius.ru/
+  enabled: true
+- name: ADGM / DIFC / Khalifa University (adgm.com)
+  org: ADGM / DIFC / Khalifa University
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.adgm.com/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: ADGM / DIFC / Khalifa University (difc.ae)
+  org: ADGM / DIFC / Khalifa University
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.difc.ae/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: ADGM / DIFC / Khalifa University (ku.ac.ae)
+  org: ADGM / DIFC / Khalifa University
+  sec: school
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ku.ac.ae/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Nazarbayev University / Astana Hub (nu.edu.kz)
+  org: Nazarbayev University / Astana Hub
+  sec: school
+  country: Международно
+  rf: да
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://nu.edu.kz/
+  enabled: true
+- name: Nazarbayev University / Astana Hub (astanahub.com)
+  org: Nazarbayev University / Astana Hub
+  sec: school
+  country: Международно
+  rf: да
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://astanahub.com/
+  enabled: true
+- name: Yakov & Partners
+  org: Yakov & Partners
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.yakovpartners.com/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: McKinsey
+  org: McKinsey
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.mckinsey.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BCG
+  org: BCG
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.bcg.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Bain
+  org: Bain
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.bain.com/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Goldman Sachs
+  org: Goldman Sachs
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.goldmansachs.com/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: J.P. Morgan
+  org: J.P. Morgan
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.jpmorgan.com/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Morgan Stanley
+  org: Morgan Stanley
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.morganstanley.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Citi
+  org: Citi
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://jobs.citi.com/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS (careers.bnpparibas.com)
+  org: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.bnpparibas.com/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS (careers.societegenerale.com)
+  org: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.societegenerale.com/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS (db.com)
+  org: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.db.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS (home.barclays)
+  org: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://home.barclays/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS (ubs.com)
+  org: BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ubs.com/global/en/careers.html
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Rothschild / Lazard / Evercore / Centerview (rothschildandco.com)
+  org: Rothschild / Lazard / Evercore / Centerview
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.rothschildandco.com/en/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Rothschild / Lazard / Evercore / Centerview (lazard.com)
+  org: Rothschild / Lazard / Evercore / Centerview
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.lazard.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Rothschild / Lazard / Evercore / Centerview (evercore.com)
+  org: Rothschild / Lazard / Evercore / Centerview
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.evercore.com/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Rothschild / Lazard / Evercore / Centerview (centerviewpartners.com)
+  org: Rothschild / Lazard / Evercore / Centerview
+  sec: intern
+  country: Международно
+  rf: проверить (часто ограничено)
+  tr: да (виза/разрешение)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.centerviewpartners.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Strategy Partners
+  org: Strategy Partners
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.strategy.ru/career/
+  enabled: true
+- name: Kearney / ЦСР / «Кузьмин и партнёры» (kearney.com)
+  org: Kearney / ЦСР / «Кузьмин и партнёры»
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.kearney.com/careers
+  enabled: true
+- name: Kearney / ЦСР / «Кузьмин и партнёры» (csr.ru)
+  org: Kearney / ЦСР / «Кузьмин и партнёры»
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.csr.ru/
+  enabled: true
+- name: Kearney / ЦСР / «Кузьмин и партнёры» (kuzminpartners.ru)
+  org: Kearney / ЦСР / «Кузьмин и партнёры»
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://kuzminpartners.ru/
+  enabled: true
+- name: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк (sberbank.com)
+  org: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.sberbank.com/career
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк (vtb.ru)
+  org: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.vtb.ru/career/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк (alfabank.ru)
+  org: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://alfabank.ru/career/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк (gazprombank.ru)
+  org: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.gazprombank.ru/career/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк (sovcombank.ru)
+  org: Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://sovcombank.ru/career
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Т-Банк / Т-Инвестиции (tbank.ru)
+  org: Т-Банк / Т-Инвестиции
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.tbank.ru/career/
+  enabled: true
+- name: Т-Банк / Т-Инвестиции (tbank.ru)
+  org: Т-Банк / Т-Инвестиции
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.tbank.ru/invest/
+  enabled: true
+- name: Мосбиржа / Банк России (moex.com)
+  org: Мосбиржа / Банк России
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.moex.com/
+  enabled: true
+- name: Мосбиржа / Банк России (cbr.ru)
+  org: Мосбиржа / Банк России
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cbr.ru/career/
+  enabled: true
+- name: Яндекс / МТС / VK (стратегия, финтех) (yandex.ru)
+  org: Яндекс / МТС / VK (стратегия, финтех)
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://yandex.ru/career/
+  enabled: true
+- name: Яндекс / МТС / VK (стратегия, финтех) (career.mts.ru)
+  org: Яндекс / МТС / VK (стратегия, финтех)
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://career.mts.ru/
+  enabled: true
+- name: Яндекс / МТС / VK (стратегия, финтех) (vk.company)
+  org: Яндекс / МТС / VK (стратегия, финтех)
+  sec: intern
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://vk.company/career/
+  enabled: true
+- name: CBRE / JLL / Knight Frank / Colliers (cbre.com)
+  org: CBRE / JLL / Knight Frank / Colliers
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cbre.com/careers
+  enabled: true
+- name: CBRE / JLL / Knight Frank / Colliers (jll.com)
+  org: CBRE / JLL / Knight Frank / Colliers
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.jll.com/careers
+  enabled: true
+- name: CBRE / JLL / Knight Frank / Colliers (knightfrank.com)
+  org: CBRE / JLL / Knight Frank / Colliers
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.knightfrank.com/careers
+  enabled: true
+- name: CBRE / JLL / Knight Frank / Colliers (colliers.com)
+  org: CBRE / JLL / Knight Frank / Colliers
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.colliers.com/careers
+  enabled: true
+- name: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон (pik.ru)'
+  org: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон'
+  sec: intern
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.pik.ru/career
+  enabled: true
+- name: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон (samolyot.ru)'
+  org: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон'
+  sec: intern
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://samolyot.ru/career
+  enabled: true
+- name: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон (donstroi.ru)'
+  org: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон'
+  sec: intern
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.donstroi.ru/career
+  enabled: true
+- name: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон (etallc.ru)'
+  org: 'Девелоперы: ПИК, Самолёт, Донстрой, Эталон'
+  sec: intern
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.etallc.ru/career
+  enabled: true
+- name: Отельные сети (Radisson, Azimut и др.) (careers.radissonhotels.com)
+  org: Отельные сети (Radisson, Azimut и др.)
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.radissonhotels.com/
+  enabled: true
+- name: Отельные сети (Radisson, Azimut и др.) (azimut-hotels.com)
+  org: Отельные сети (Radisson, Azimut и др.)
+  sec: intern
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://azimut-hotels.com/career
+  enabled: true
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (mckinsey.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.mckinsey.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (bcg.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.bcg.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (bain.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.bain.com/careers/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (ey.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ey.com/en_gl/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (kpmg.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.kpmg.com/careers
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (pwc.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.pwc.com/gx/en/careers.html
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Big4 и офисы McKinsey/BCG/Bain в Стамбуле (www2.deloitte.com)
+  org: Big4 и офисы McKinsey/BCG/Bain в Стамбуле
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www2.deloitte.com/global/en/careers.html
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: İş Bankası / Garanti BBVA / Akbank (isbank.com.tr)
+  org: İş Bankası / Garanti BBVA / Akbank
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.isbank.com.tr/en
+  enabled: true
+- name: İş Bankası / Garanti BBVA / Akbank (garantibbva.com.tr)
+  org: İş Bankası / Garanti BBVA / Akbank
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.garantibbva.com.tr/en
+  enabled: true
+- name: İş Bankası / Garanti BBVA / Akbank (akbank.com)
+  org: İş Bankası / Garanti BBVA / Akbank
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.akbank.com/en
+  enabled: true
+- name: Koç / Sabancı Holding (koc.com.tr)
+  org: Koç / Sabancı Holding
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.koc.com.tr/en-us
+  enabled: true
+- name: Koç / Sabancı Holding (sabanci.com)
+  org: Koç / Sabancı Holding
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.sabanci.com/en
+  enabled: true
+- name: Borsa Istanbul / Istanbul Finance Center (borsaistanbul.com)
+  org: Borsa Istanbul / Istanbul Finance Center
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.borsaistanbul.com/en/
+  enabled: true
+- name: Borsa Istanbul / Istanbul Finance Center (ifcistanbul.com)
+  org: Borsa Istanbul / Istanbul Finance Center
+  sec: intern
+  country: Турция
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://ifcistanbul.com/en
+  enabled: true
+- name: UN Careers / Internships
+  org: UN Careers / Internships
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.un.org/
+  enabled: true
+- name: World Bank
+  org: World Bank
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.worldbank.org/en/about/careers
+  enabled: true
+- name: IMF
+  org: IMF
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.imf.org/en/About/Careers
+  enabled: true
+- name: OECD
+  org: OECD
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.oecd.org/careers/
+  enabled: true
+- name: EBRD
+  org: EBRD
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.ebrd.com/careers.html
+  enabled: true
+- name: EIB
+  org: EIB
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.eib.org/en/careers/index.htm
+  enabled: true
+- name: WTO
+  org: WTO
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.wto.org/english/thewto_e/vacan_e/vacan_e.htm
+  enabled: true
+- name: UNICEF / UNDP / UNESCO (careers.unicef.org)
+  org: UNICEF / UNDP / UNESCO
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.unicef.org/
+  enabled: true
+- name: UNICEF / UNDP / UNESCO (jobs.undp.org)
+  org: UNICEF / UNDP / UNESCO
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://jobs.undp.org/
+  enabled: true
+- name: UNICEF / UNDP / UNESCO (careers.unesco.org)
+  org: UNICEF / UNDP / UNESCO
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.unesco.org/
+  enabled: true
+- name: CERN / DESY / EMBL (careers.cern)
+  org: CERN / DESY / EMBL
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://careers.cern/
+  enabled: true
+- name: CERN / DESY / EMBL (desy.de)
+  org: CERN / DESY / EMBL
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.desy.de/career/index_eng.html
+  enabled: true
+- name: CERN / DESY / EMBL (embl.org)
+  org: CERN / DESY / EMBL
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да (виза)
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.embl.org/about/info/course-and-conference-office/
+  enabled: true
+- name: CFA Research Challenge
+  org: CFA Research Challenge
+  sec: case
+  country: Международно
+  rf: проверить
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cfainstitute.org/programs/cfa-research-challenge
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Moscow Case Club
+  org: Moscow Case Club
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: telegram
+  channel: moscowcaseclub
+  enabled: true
+- name: Чемпионаты Сбера, Т-Банка, Яндекса (sberbank.com)
+  org: Чемпионаты Сбера, Т-Банка, Яндекса
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.sberbank.com/career
+  enabled: true
+- name: Чемпионаты Сбера, Т-Банка, Яндекса (tbank.ru)
+  org: Чемпионаты Сбера, Т-Банка, Яндекса
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.tbank.ru/career/
+  enabled: true
+- name: Чемпионаты Сбера, Т-Банка, Яндекса (yandex.ru)
+  org: Чемпионаты Сбера, Т-Банка, Яндекса
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://yandex.ru/career/
+  enabled: true
+- name: Олимпиады Банка России и Финансового университета (cbr.ru)
+  org: Олимпиады Банка России и Финансового университета
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cbr.ru/career/
+  enabled: true
+- name: Олимпиады Банка России и Финансового университета (fa.ru)
+  org: Олимпиады Банка России и Финансового университета
+  sec: case
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://fa.ru/
+  enabled: true
+- name: Hult Prize
+  org: Hult Prize
+  sec: case
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.hultprize.org/
+  enabled: true
+- name: One Young World
+  org: One Young World
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.oneyoungworld.com/
+  enabled: true
+- name: St. Gallen Symposium
+  org: St. Gallen Symposium
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.symposium.org/
+  enabled: true
+- name: World Economic Forum (Davos, youth)
+  org: World Economic Forum (Davos, youth)
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.weforum.org/
+  enabled: true
+- name: IMF / World Bank Meetings (youth events) (imf.org)
+  org: IMF / World Bank Meetings (youth events)
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.imf.org/en/News/Seminars
+  enabled: true
+- name: IMF / World Bank Meetings (youth events) (worldbank.org)
+  org: IMF / World Bank Meetings (youth events)
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.worldbank.org/en/events
+  enabled: true
+- name: FT / Bloomberg events (events.ft.com)
+  org: FT / Bloomberg events
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://events.ft.com/
+  enabled: true
+- name: FT / Bloomberg events (bloomberg.com)
+  org: FT / Bloomberg events
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.bloomberg.com/professional/events/
+  enabled: true
+- name: Milken Institute Global Conference
+  org: Milken Institute Global Conference
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://events.milkeninstitute.org/
+  enabled: true
+- name: Web Summit / Slush / TechCrunch Disrupt (websummit.com)
+  org: Web Summit / Slush / TechCrunch Disrupt
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://websummit.com/
+  enabled: true
+- name: Web Summit / Slush / TechCrunch Disrupt (slush.org)
+  org: Web Summit / Slush / TechCrunch Disrupt
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.slush.org/
+  enabled: true
+- name: Web Summit / Slush / TechCrunch Disrupt (techcrunch.com)
+  org: Web Summit / Slush / TechCrunch Disrupt
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://techcrunch.com/events/
+  enabled: true
+- name: MIPIM / Expo Real / Cityscape (mipim.com)
+  org: MIPIM / Expo Real / Cityscape
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.mipim.com/
+  enabled: true
+- name: MIPIM / Expo Real / Cityscape (exporeal.net)
+  org: MIPIM / Expo Real / Cityscape
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.exporeal.net/
+  enabled: true
+- name: MIPIM / Expo Real / Cityscape (cityscapeglobal.com)
+  org: MIPIM / Expo Real / Cityscape
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cityscapeglobal.com/
+  enabled: true
+- name: ILTM / WTTC / hospitality summits (iltm.com)
+  org: ILTM / WTTC / hospitality summits
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.iltm.com/
+  enabled: true
+- name: ILTM / WTTC / hospitality summits (wttc.org)
+  org: ILTM / WTTC / hospitality summits
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://wttc.org/
+  enabled: true
+- name: ПМЭФ / ВЭФ / Открытые инновации (forumspb.com)
+  org: ПМЭФ / ВЭФ / Открытые инновации
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://forumspb.com/
+  enabled: true
+- name: ПМЭФ / ВЭФ / Открытые инновации (forumvostok.ru)
+  org: ПМЭФ / ВЭФ / Открытые инновации
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://forumvostok.ru/
+  enabled: true
+- name: ПМЭФ / ВЭФ / Открытые инновации (forinn.com)
+  org: ПМЭФ / ВЭФ / Открытые инновации
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://forinn.com/
+  enabled: true
+- name: Финопт / Московский финансовый форум (finopolis.ru)
+  org: Финопт / Московский финансовый форум
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://finopolis.ru/
+  enabled: true
+- name: Финопт / Московский финансовый форум (mff.minfin.gov.ru)
+  org: Финопт / Московский финансовый форум
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://mff.minfin.gov.ru/
+  enabled: true
+- name: Российская неделя недвижимости / Урбанистический форум (rnn.congress.ru)
+  org: Российская неделя недвижимости / Урбанистический форум
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://rnn.congress.ru/
+  enabled: true
+- name: Российская неделя недвижимости / Урбанистический форум (urbanforum.ru)
+  org: Российская неделя недвижимости / Урбанистический форум
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://urbanforum.ru/
+  enabled: true
+- name: Skolkovo Startup Village
+  org: Skolkovo Startup Village
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://startupvillage.ru/
+  enabled: true
+- name: РСПП / Деловая Россия (ESG) (rspp.ru)
+  org: РСПП / Деловая Россия (ESG)
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://rspp.ru/
+  enabled: true
+- name: РСПП / Деловая Россия (ESG) (delovayarossiya.org)
+  org: РСПП / Деловая Россия (ESG)
+  sec: summit
+  country: Россия
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://delovayarossiya.org/
+  enabled: true
+- name: 'ESG: PRI, CFA Institute, ACCA (unpri.org)'
+  org: 'ESG: PRI, CFA Institute, ACCA'
+  sec: summit
+  country: Россия
+  rf: проверить
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.unpri.org/
+  enabled: true
+- name: 'ESG: PRI, CFA Institute, ACCA (cfainstitute.org)'
+  org: 'ESG: PRI, CFA Institute, ACCA'
+  sec: summit
+  country: Россия
+  rf: проверить
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.cfainstitute.org/
+  enabled: true
+- name: 'ESG: PRI, CFA Institute, ACCA (accaglobal.com)'
+  org: 'ESG: PRI, CFA Institute, ACCA'
+  sec: summit
+  country: Россия
+  rf: проверить
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.accaglobal.com/
+  enabled: true
+- name: 'МФТИ: международные программы и мобильность'
+  org: 'МФТИ: международные программы и мобильность'
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://mipt.ru/education/international/
+  enabled: true
+- name: 'МФТИ: карьерный центр'
+  org: 'МФТИ: карьерный центр'
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://mipt.ru/career/
+  enabled: true
+- name: 'МШУ Сколково: international office'
+  org: 'МШУ Сколково: international office'
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.skolkovo.ru/
+  enabled: true
+- name: 'Сколково: карьерный центр и корпоративные партнёры'
+  org: 'Сколково: карьерный центр и корпоративные партнёры'
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.sk.ru/
+  enabled: true
+- name: Telegram и рассылки МФТИ / Физтех-школы / студсовет
+  org: Telegram и рассылки МФТИ / Физтех-школы / студсовет
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: telegram
+  channel: mipt_official
+  enabled: true
+- name: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)
+  org: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB»
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: telegram
+  channel: changellenge
+  enabled: true
+- name: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)
+  org: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB»
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: telegram
+  channel: case_in
+  enabled: true
+- name: Wharton financial aid / Warburg Pincus Fellowship
+  org: Wharton financial aid / Warburg Pincus Fellowship
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://academy.wharton.upenn.edu/admissions/financial-aid/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: LSE Summer School scholarships
+  org: LSE Summer School scholarships
+  sec: summit
+  country: Международно
+  rf: проверить
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.lse.ac.uk/study-at-lse/summer-schools/Fees-and-scholarships
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: МФТИ mobility grants / поддержка МШУ Сколково
+  org: МФТИ mobility grants / поддержка МШУ Сколково
+  sec: summit
+  country: Международно
+  rf: да
+  tr: проверить
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://mipt.ru/education/international/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Erasmus+ Traineeships
+  org: Erasmus+ Traineeships
+  sec: summit
+  country: Международно
+  rf: нет (как правило)
+  tr: частично
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/traineeships
+  enabled: true
+- name: Фонды для турецких студентов за рубежом (turkiyeburslari.gov.tr)
+  org: Фонды для турецких студентов за рубежом
+  sec: summit
+  country: Международно
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.turkiyeburslari.gov.tr/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
+- name: Фонды для турецких студентов за рубежом (daad.de)
+  org: Фонды для турецких студентов за рубежом
+  sec: summit
+  country: Международно
+  rf: нет
+  tr: да
+  include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
+  type: site
+  list_url: https://www.daad.de/en/
+  enabled: false
+  skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
