@@ -21,7 +21,7 @@ DL_WORDS = re.compile(r"дедлайн|apply\s+by|applications?\s+(?:close|due)|
 SECTIONS = [
     ("case", r"кейс|case|чемпионат"),
     ("school", r"летн\w+\s+школ|summer school|школ\w+"),
-    ("intern", r"стажир|internship|trainee|junior|аналитик"),
+    ("intern", r"стажир|стаж[её]р|internship|trainee|junior|аналитик"),
     ("summit", r"конференц|форум|саммит|summit|conference|симпозиум"),
 ]
 
@@ -30,11 +30,15 @@ MEN_RX = "|".join(MEN)
 DATE_EN1 = re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+({MEN_RX})(?:,?\s+(\d{{4}}))?", re.I)
 DATE_EN2 = re.compile(rf"\b({MEN_RX})\s+(\d{{1,2}})(?!\d)(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?", re.I)
 
-OPP_RX = re.compile(r"стажир|internship|summer\s+school|летн\w+\s+школ|кейс-?чемпионат|case\s+(?:championship|competition)|fellowship|стипенд|scholarship|грант|конференц|conference|summit|саммит|симпозиум|форум|программ\w+\s+для\s+студент|insight|spring\s+week|trainee|traineeship|олимпиад|hackathon|хакатон", re.I)
-NEG_RX = re.compile(r"\bsenior\b|\blead\b|director|head\s+of|\bvp\b|principal|manager|менеджер|ведущ|руководител|директор|от\s+\d+\s+лет|опыт\w*\s+от|experienced|top[\s-]*\d+|best\s+\d+|топ[\s-]*\d+|how\s+to|как\s+(?:получить|найти|попасть)|tips|советы|обзор|review|guide|cookie|privacy|sign\s*in|log\s*in|subscribe|подписа|казино|casino|crypto|ставки|реклама", re.I)
+OPP_RX = re.compile(r"стажир|стаж[её]р|internship|summer\s+school|летн\w+\s+школ|кейс-?чемпионат|case\s+(?:championship|competition)|fellowship|стипенд|scholarship|грант|конференц|conference|summit|саммит|симпозиум|форум|программ\w+\s+для\s+студент|insight|spring\s+week|trainee|traineeship|олимпиад|hackathon|хакатон", re.I)
+NEG_RX = re.compile(r"\bsenior\b|\blead\b|director|head\s+of|\bvp\b|principal|manager|менеджер|ведущ|руководител|директор|от\s+\d+\s+лет|опыт\w*\s+от|experienced|top[\s-]*\d+|best\s+\d+|топ[\s-]*\d+|how\s+to|как\s+(?:получить|найти|попасть)|tips|советы|обзор|review|guide|cookie|privacy|sign\s*in|log\s*in|subscribe|подписа|казино|casino|crypto|ставки|реклама|школьн\\w+|для\\s+школьников|учеников|\\d\\s*[-–]\\s*\\d+\\s*класс|мем", re.I)
+
+CTA_RX = re.compile(r"заявк|регистрац|набор|откликн|подать|приём|прием|apply|registration|присоединя|ждём|ждем", re.I)
 
 def score(title, text, dates, dl, cost):
+    if not OPP_RX.search(title + " " + text): return 0  # без слов про стажировки, школы, кейсы и т.п. это не возможность
     s = 0
+    if CTA_RX.search(title + " " + text[:400]): s += 1
     if OPP_RX.search(title): s += 2
     elif OPP_RX.search(text): s += 1
     if dates: s += 1
@@ -130,7 +134,26 @@ def get(url, rp_cache={}):
     time.sleep(1)
     return r.text
 
+SALARY_RX = re.compile(r"(\d[\d\s]*\s?₽|з/п[^|]*)\s*$", re.I)
+
+def split_digest(src, text, post_url):
+    """Подборка вакансий в одном посте («💳 стажер ... 60 000 ₽ | Москва | полный день») -> отдельные карточки."""
+    segs = [s.strip(" \ufe0f\n") for s in re.split(r"(?=[\U0001F300-\U0001FAFF\u2600-\u27BF])", text)]
+    vac = [s for s in segs if s.count("|") >= 2]
+    if len(vac) < 2: return None
+    out = []
+    for i, s in enumerate(vac):
+        parts = [x.strip() for x in s.split("|")]
+        head = re.sub(r"^[^\w«\"(]+", "", parts[0])
+        m = SALARY_RX.search(head)
+        cost = m.group(1).strip() if m else None
+        title = (head[:m.start()] if m else head).strip(" -–—")
+        e = make_event({**src, "min_score": 2}, title, s, f"{post_url}#v{i}", dict(place=parts[1][:60], fmt=parts[2][:40], cost=cost))
+        if e: out.append(e)
+    return out
+
 def parse_telegram(src):
+    src = {**src, "min_score": max(src.get("min_score", 2), 3)}
     html = get(f"https://t.me/s/{src['channel']}")
     if not html: return []
     soup = BeautifulSoup(html, "html.parser"); out = []
@@ -146,8 +169,11 @@ def parse_telegram(src):
                 age = (today() - dt.datetime.fromisoformat(tm["datetime"]).date()).days
                 if age > src.get("max_age_days", 90): continue
             except ValueError: pass
+        purl = a["href"] if a else f"https://t.me/{src['channel']}"
+        dig = split_digest(src, text, purl)
+        if dig is not None: out += dig; continue
         title = next((l.strip(" •▪️🚀*") for l in text.split("\n") if l.strip()), "Пост")
-        e = make_event(src, title, text, a["href"] if a else f"https://t.me/{src['channel']}")
+        e = make_event(src, title, text, purl)
         if e: out.append(e)
     return out
 

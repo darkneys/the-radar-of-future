@@ -1305,9 +1305,9 @@ sources:
   enabled: false
   skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
 - name: Moscow Case Club
-  org: Moscow Case Club
+  org: Telegram @moscowcaseclub
   sec: case
-  country: Международно
+  country: Россия
   rf: да
   tr: проверить
   include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
@@ -1705,9 +1705,9 @@ sources:
   list_url: https://www.sk.ru/
   enabled: true
 - name: Telegram и рассылки МФТИ / Физтех-школы / студсовет
-  org: Telegram и рассылки МФТИ / Физтех-школы / студсовет
+  org: Telegram @mipt_official
   sec: summit
-  country: Международно
+  country: Россия
   rf: да
   tr: проверить
   include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
@@ -1715,9 +1715,9 @@ sources:
   channel: mipt_official
   enabled: true
 - name: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)
-  org: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB»
+  org: Telegram @changellenge
   sec: summit
-  country: Международно
+  country: Россия
   rf: да
   tr: проверить
   include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
@@ -1725,9 +1725,9 @@ sources:
   channel: changellenge
   enabled: true
 - name: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)
-  org: Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB»
+  org: Telegram @case_in
   sec: summit
-  country: Международно
+  country: Россия
   rf: да
   tr: проверить
   include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
