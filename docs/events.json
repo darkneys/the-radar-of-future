@@ -1,26 +1,6 @@
 {
- "updated": "28.10.2026 12:06",
+ "updated": "28.10.2026 17:33",
  "events": [
-  {
-   "sec": "summit",
-   "title": "IWA & Grundfos “Youth Action for SDG 6” Fellowship 2027-2028",
-   "org": "Opportunity Desk",
-   "country": "Международно",
-   "place": "уточнить на сайте",
-   "fmt": "уточнить на сайте",
-   "dates": "уточнить на сайте",
-   "dl": "November 5, 2026",
-   "dl_iso": "2026-11-05",
-   "cost": "уточнить на сайте",
-   "cond": "уточнить на сайте",
-   "desc": "IWA & Grundfos “Youth Action for SDG 6” Fellowship 2027-2028. Deadline: November 5, 2026 Applications are open for the IWA & Grundfos “Youth Action for SDG 6” Fellowship 2027-2028. Established in 2022, the Fellowship supports Young Water Professionals (YWPs) to strengthen their leadership, professional capabilities and contribution to global water challenges. Building on the experience of the firs",
-   "url": "https://opportunitydesk.org/2026/10/27/iwa-grundfos-youth-action-for-sdg-6-fellowship-2027-2028/",
-   "rf": "проверить",
-   "tr": "да",
-   "ok": 0,
-   "source": "Opportunity Desk",
-   "score": 3
-  },
   {
    "sec": "intern",
    "title": "Council of Europe Development Bank (CEB) Internship 2027",
@@ -42,7 +22,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "AHRC Doctoral Landscape Scholarship Awards at Birmingham City University 2027",
    "org": "Opportunity Desk",
    "country": "Международно",
@@ -62,7 +42,7 @@
    "score": 3
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "IDRC John G. Bene Fellowship 2026 (up to $30,000 CAD)",
    "org": "Opportunity Desk",
    "country": "Международно",
@@ -82,7 +62,7 @@
    "score": 4
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Science, Mathematics, and Research for Transformation (SMART) Scholarship-for-Service Program 2027/2028",
    "org": "Opportunity Desk",
    "country": "Международно",
@@ -102,7 +82,7 @@
    "score": 3
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "CDC Steven M. Teutsch Prevention Effectiveness (PE) Fellowship 2027 (Paid)",
    "org": "Opportunity Desk",
    "country": "Международно",
@@ -408,7 +388,7 @@
    "score": 3
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "One Young World Leading Scholarship 2026 in South Africa (Fully Funded)",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -428,7 +408,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Gloria’s Foundation Fellowship 2027",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -448,7 +428,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Anzisha Fellowship for Young African Entrepreneurs 2027",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -468,7 +448,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Call for Princeton in Africa Fellowship 2027-2028",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -488,7 +468,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "The World Bank Government Analytics Fellowship 2027",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -528,7 +508,7 @@
    "score": 3
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Call for Applications: Women of the South Speak Out Fellowship (WOSSO) Fellowship for the Asia-Pacific",
    "org": "Youth Opportunities",
    "country": "Международно",
@@ -628,7 +608,7 @@
    "score": 2
   },
   {
-   "sec": "school",
+   "sec": "grant",
    "title": "Определены участники программы «Гранты СИБУРа»",
    "org": "Университет 20.35 / Сириус",
    "country": "Россия",
@@ -648,7 +628,7 @@
    "score": 2
   },
   {
-   "sec": "school",
+   "sec": "grant",
    "title": "На странице программы «Гранты СИБУРа» опубликованы пробные тест...",
    "org": "Университет 20.35 / Сириус",
    "country": "Россия",
@@ -668,7 +648,7 @@
    "score": 2
   },
   {
-   "sec": "school",
+   "sec": "grant",
    "title": "1. 03 Участники программы грантов Президента РФ выиграли десять медалей на О...",
    "org": "Университет 20.35 / Сириус",
    "country": "Россия",
@@ -688,7 +668,7 @@
    "score": 2
   },
   {
-   "sec": "school",
+   "sec": "grant",
    "title": "4. 01 Около 2 000 российских студентов получили гранты в  2020/21 учебном го...",
    "org": "Университет 20.35 / Сириус",
    "country": "Россия",
@@ -828,7 +808,7 @@
    "score": 2
   },
   {
-   "sec": "summit",
+   "sec": "grant",
    "title": "Apply for a scholarship Apply for a scholarship",
    "org": "One Young World",
    "country": "Международно",
@@ -889,23 +869,23 @@
   },
   {
    "sec": "summit",
-   "title": "TechCrunch Founder Summit 2026",
+   "title": "7 days until TechCrunch Founder Summit: Save up to $100 on your pass before doors open",
    "org": "Web Summit / Slush / TechCrunch Disrupt",
    "country": "Международно",
    "place": "уточнить на сайте",
    "fmt": "уточнить на сайте",
-   "dates": "уточнить на сайте",
+   "dates": "November 4",
    "dl": "уточнить на сайте",
    "dl_iso": "",
-   "cost": "уточнить на сайте",
+   "cost": "$100",
    "cond": "уточнить на сайте",
-   "desc": "TechCrunch Founder Summit 2026",
-   "url": "https://techcrunch.com/events/techcrunch-founder-summit-2026/",
+   "desc": "7 days until TechCrunch Founder Summit: Save up to $100 on your pass before doors open. In just 7 days, TechCrunch Founder Summit takes over Boston’s SoWa Power Station on November 4. Your chance to save up to $100 on tickets is running out, and the opportunity to learn and connect directly with experienced founders, investors, and startup leaders is almost here.",
+   "url": "https://techcrunch.com/2026/10/28/7-days-until-techcrunch-founder-summit-save-up-to-100-before-doors-open/",
    "rf": "проверить",
    "tr": "да",
    "ok": 0,
    "source": "Web Summit / Slush / TechCrunch Disrupt (techcrunch.com)",
-   "score": 2
+   "score": 4
   },
   {
    "sec": "summit",
@@ -1106,6 +1086,66 @@
    "ok": 0,
    "source": "Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)",
    "score": 3
+  },
+  {
+   "sec": "intern",
+   "title": "стажировка в X5 Tech\nудаленка",
+   "org": "Telegram @changellenge",
+   "country": "Россия",
+   "place": "с 1 курса",
+   "fmt": "20–40 часов",
+   "dates": "уточнить на сайте",
+   "dl": "уточнить на сайте",
+   "dl_iso": "",
+   "cost": "уточнить на сайте",
+   "cond": "уточнить на сайте",
+   "desc": "💾 стажировка в X5 Tech удаленка | с 1 курса | 20–40 часов",
+   "url": "https://t.me/changellenge/9183#v1",
+   "rf": "да",
+   "tr": "проверить",
+   "ok": 0,
+   "source": "Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)",
+   "score": 2
+  },
+  {
+   "sec": "intern",
+   "title": "стажировка в Mars с зарплатой до 70 000 ₽\nМосква, Одинцово, Лужники, Сыктывкар, Ростов-на-Дону, Ярославль, Санкт-Петербург, Новосибирск, Хаб",
+   "org": "Telegram @changellenge",
+   "country": "Россия",
+   "place": "с 3 курса",
+   "fmt": "20–40 часов",
+   "dates": "уточнить на сайте",
+   "dl": "уточнить на сайте",
+   "dl_iso": "",
+   "cost": "70 000 ₽",
+   "cond": "уточнить на сайте",
+   "desc": "🐶 стажировка в Mars с зарплатой до 70 000 ₽ Москва, Одинцово, Лужники, Сыктывкар, Ростов-на-Дону, Ярославль, Санкт-Петербург, Новосибирск, Хабаровск, Владивосток, Ступино | с 3 курса | 20–40 часов",
+   "url": "https://t.me/changellenge/9183#v2",
+   "rf": "да",
+   "tr": "проверить",
+   "ok": 0,
+   "source": "Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)",
+   "score": 3
+  },
+  {
+   "sec": "intern",
+   "title": "стажировка от Nordgold\nрудник Гросс",
+   "org": "Telegram @changellenge",
+   "country": "Россия",
+   "place": "для выпускников",
+   "fmt": "вахта 45/45\nпрограммы развития",
+   "dates": "уточнить на сайте",
+   "dl": "уточнить на сайте",
+   "dl_iso": "",
+   "cost": "уточнить на сайте",
+   "cond": "уточнить на сайте",
+   "desc": "⛏️ стажировка от Nordgold рудник Гросс | для выпускников | вахта 45/45 программы развития",
+   "url": "https://t.me/changellenge/9183#v3",
+   "rf": "да",
+   "tr": "проверить",
+   "ok": 0,
+   "source": "Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB» (t.me)",
+   "score": 2
   }
  ]
 }
