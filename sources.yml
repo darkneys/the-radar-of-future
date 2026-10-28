@@ -33,14 +33,53 @@ sources:
   # Сюда добавляй источники вручную (например, новые Telegram-каналы).
   # Остальные источники берутся из таблицы: data/istochniki.xlsx -> python table_to_sources.py -> sources_table.yml
 
-  # ---- Google Alerts (RSS): создаёшь оповещение на google.com/alerts, в «Доставка» выбираешь RSS,
-  # ---- копируешь ссылку на ленту и вставляешь в list_url. Один блок на один запрос.
-  # - name: Alert: стажировка консалтинг 2027
-  #   type: rss
-  #   list_url: ВСТАВЬ_ССЫЛКУ_ИЗ_GOOGLE_ALERTS
-  #   org: Google Alerts
-  #   sec: intern
-  #   country: Международно
-  #   rf: проверить
-  #   tr: проверить
-  #   enabled: true
+  - name: Google Alert 1
+    type: rss
+    list_url: https://www.google.com/alerts/feeds/13969529888913140098/12707064439262601090
+    org: Google Alerts
+    sec: summit
+    country: Международно
+    rf: проверить
+    tr: проверить
+    enabled: true
+
+  - name: Google Alert 2
+    type: rss
+    list_url: https://www.google.com/alerts/feeds/13969529888913140098/4755272544315764519
+    org: Google Alerts
+    sec: summit
+    country: Международно
+    rf: проверить
+    tr: проверить
+    enabled: true
+
+  - name: Google Alert 3
+    type: rss
+    list_url: https://www.google.com/alerts/feeds/13969529888913140098/6607387671357656885
+    org: Google Alerts
+    sec: summit
+    country: Международно
+    rf: проверить
+    tr: проверить
+    enabled: true
+
+  - name: Google Alert 4
+    type: rss
+    list_url: https://www.google.com/alerts/feeds/13969529888913140098/2318953498645723203
+    org: Google Alerts
+    sec: summit
+    country: Международно
+    rf: проверить
+    tr: проверить
+    enabled: true
+
+  - name: Google Alert 5
+    type: rss
+    list_url: https://www.google.com/alerts/feeds/13969529888913140098/4171949680894851066
+    org: Google Alerts
+    sec: summit
+    country: Международно
+    rf: проверить
+    tr: проверить
+    enabled: true
+

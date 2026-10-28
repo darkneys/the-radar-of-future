@@ -94,6 +94,8 @@ BLOCKED = set()
 
 def get(url, rp_cache={}):
     p = urlparse(url); base = f"{p.scheme}://{p.netloc}"
+    if "google.com/alerts/feeds/" in url:  # персональная RSS-лента, выданная тебе для чтения программами
+        r = requests.get(url, headers=HEAD, timeout=15); r.raise_for_status(); time.sleep(1); return r.text
     if base not in rp_cache:
         rp = robotparser.RobotFileParser()
         try:
