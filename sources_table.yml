@@ -1736,7 +1736,7 @@ sources:
   enabled: true
 - name: Wharton financial aid / Warburg Pincus Fellowship
   org: Wharton financial aid / Warburg Pincus Fellowship
-  sec: summit
+  sec: grant
   country: Международно
   rf: проверить
   tr: да
@@ -1747,7 +1747,7 @@ sources:
   skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
 - name: LSE Summer School scholarships
   org: LSE Summer School scholarships
-  sec: summit
+  sec: grant
   country: Международно
   rf: проверить
   tr: да
@@ -1758,7 +1758,7 @@ sources:
   skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
 - name: МФТИ mobility grants / поддержка МШУ Сколково
   org: МФТИ mobility grants / поддержка МШУ Сколково
-  sec: summit
+  sec: grant
   country: Международно
   rf: да
   tr: проверить
@@ -1769,7 +1769,7 @@ sources:
   skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
 - name: Erasmus+ Traineeships
   org: Erasmus+ Traineeships
-  sec: summit
+  sec: grant
   country: Международно
   rf: нет (как правило)
   tr: частично
@@ -1779,7 +1779,7 @@ sources:
   enabled: true
 - name: Фонды для турецких студентов за рубежом (turkiyeburslari.gov.tr)
   org: Фонды для турецких студентов за рубежом
-  sec: summit
+  sec: grant
   country: Международно
   rf: нет
   tr: да
@@ -1790,7 +1790,7 @@ sources:
   skip_reason: 'сайт на JS или ведётся вручную: добавляй карточки в data/manual.json'
 - name: Фонды для турецких студентов за рубежом (daad.de)
   org: Фонды для турецких студентов за рубежом
-  sec: summit
+  sec: grant
   country: Международно
   rf: нет
   tr: да

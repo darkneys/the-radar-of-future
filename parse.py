@@ -22,6 +22,7 @@ SECTIONS = [
     ("case", r"кейс|case|чемпионат"),
     ("school", r"летн\w+\s+школ|summer school|школ\w+"),
     ("intern", r"стажир|стаж[её]р|internship|trainee|junior|аналитик"),
+    ("grant", r"грант|стипенд|scholarship|fellowship|funding|financial\s+aid|bursary"),
     ("summit", r"конференц|форум|саммит|summit|conference|симпозиум"),
 ]
 
@@ -306,7 +307,7 @@ def main():
             print("  ОШИБКА:", ex); stats["ошибка"].append(src["name"])
         finally:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
-    manual = json.loads(MANUAL.read_text(encoding="utf-8")) if MANUAL.exists() else []
+    manual = [m for f in sorted((ROOT / "data").glob("manual*.json")) for m in json.loads(f.read_text(encoding="utf-8"))]
     for m in manual: m.setdefault("dl_iso", ""); m.setdefault("source", "вручную")
     seen, merged = set(), []
     for e in manual + events:

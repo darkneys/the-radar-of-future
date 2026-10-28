@@ -6,7 +6,7 @@ import re, openpyxl, yaml
 ROOT = Path(__file__).parent
 ws = openpyxl.load_workbook(ROOT / "data" / "istochniki.xlsx")["Источники"]
 INCL = "стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ"
-sec = lambda c: "intern" if "стажир" in c.lower() else "school" if "школ" in c.lower() else "case" if "кейс" in c.lower() else "summit"
+sec = lambda c: "grant" if re.search(r"финансирован|стипенд|грант", c.lower()) else "intern" if "стажир" in c.lower() else "school" if "школ" in c.lower() else "case" if "кейс" in c.lower() else "summit"
 country = lambda c: "Россия" if "Россия" in c else "Турция" if "Турция" in c else "Международно"
 out, probe = [], []
 for r in ws.iter_rows(min_row=2, values_only=True):
@@ -15,7 +15,8 @@ for r in ws.iter_rows(min_row=2, values_only=True):
         host = urlparse(u).netloc.replace("www.", "")
         s = dict(name=name if ";" not in urls else f"{name} ({host})", org=name, sec=sec(cat), country=country(cat), rf=rf, tr=tr, include=INCL)
         if "t.me/" in u:
-            s.update(type="telegram", channel=u.rstrip("/").split("/")[-1])
+            ch = u.rstrip("/").split("/")[-1]
+            s.update(type="telegram", channel=ch, org=f"Telegram @{ch}", country="Россия")
         elif re.search(r"(rss|feed|\.xml)", u, re.I):
             s.update(type="rss", list_url=u)
         else:
