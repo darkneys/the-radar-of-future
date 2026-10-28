@@ -21,6 +21,8 @@ for r in ws.iter_rows(min_row=2, values_only=True):
         else:
             s.update(type="site", list_url=u)
         m = method.lower()
+        if "knightfrank.com" in u:
+            s.update(enabled=False, skip_reason="сайт не отвечает серверам GitHub (зависание)"); out.append(s); probe.append(f"{u}\t{name}"); continue
         if "playwright" in m or m.strip().startswith("вручную"):
             s.update(enabled=False, skip_reason="сайт на JS или ведётся вручную: добавляй карточки в data/manual.json")
         else:

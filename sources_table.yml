@@ -944,7 +944,8 @@ sources:
   include: стажир|internship|школ|summer|кейс|case|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант|заявк|набор|программ
   type: site
   list_url: https://www.knightfrank.com/careers
-  enabled: true
+  enabled: false
+  skip_reason: сайт не отвечает серверам GitHub (зависание)
 - name: CBRE / JLL / Knight Frank / Colliers (colliers.com)
   org: CBRE / JLL / Knight Frank / Colliers
   sec: intern

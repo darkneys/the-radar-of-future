@@ -30,6 +30,20 @@ MEN_RX = "|".join(MEN)
 DATE_EN1 = re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+({MEN_RX})(?:,?\s+(\d{{4}}))?", re.I)
 DATE_EN2 = re.compile(rf"\b({MEN_RX})\s+(\d{{1,2}})(?!\d)(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?", re.I)
 
+OPP_RX = re.compile(r"стажир|internship|summer\s+school|летн\w+\s+школ|кейс-?чемпионат|case\s+(?:championship|competition)|fellowship|стипенд|scholarship|грант|конференц|conference|summit|саммит|симпозиум|форум|программ\w+\s+для\s+студент|insight|spring\s+week|trainee|traineeship|олимпиад|hackathon|хакатон", re.I)
+NEG_RX = re.compile(r"\bsenior\b|\blead\b|director|head\s+of|\bvp\b|principal|manager|менеджер|ведущ|руководител|директор|от\s+\d+\s+лет|опыт\w*\s+от|experienced|top[\s-]*\d+|best\s+\d+|топ[\s-]*\d+|how\s+to|как\s+(?:получить|найти|попасть)|tips|советы|обзор|review|guide|cookie|privacy|sign\s*in|log\s*in|subscribe|подписа|казино|casino|crypto|ставки|реклама", re.I)
+
+def score(title, text, dates, dl, cost):
+    s = 0
+    if OPP_RX.search(title): s += 2
+    elif OPP_RX.search(text): s += 1
+    if dates: s += 1
+    if dl: s += 1
+    if cost != U: s += 1
+    if NEG_RX.search(title): s -= 3
+    elif NEG_RX.search(text[:250]): s -= 1
+    return s
+
 def today(): return dt.date.today()
 
 def find_dates(text):
@@ -88,6 +102,9 @@ def make_event(src, title, text, url, extra=None):
              desc=re.sub(r"\s+", " ", text).strip()[:400], url=url,
              rf=src.get("rf", "проверить"), tr=src.get("tr", "проверить"), ok=0, source=src["name"])
     if dl and dl[0] < today(): return None  # дедлайн прошёл
+    if not dl and ev_dates and max(d for d, s in ev_dates) < today() - dt.timedelta(days=7): return None  # событие уже прошло
+    e["score"] = score(title, text, ev_dates, dl, e["cost"])
+    if e["score"] < src.get("min_score", 2): return None  # мало признаков возможности: отбрасываем
     return e
 
 BLOCKED = set()
@@ -215,7 +232,8 @@ def harvest_links(src, soup):
     rx = re.compile(src.get("include") or INCL_DEFAULT, re.I); seen, out = set(), []
     for a in soup.select("a[href]"):
         txt = a.get_text(" ", strip=True); href = urljoin(src["list_url"], a["href"])
-        if not (12 <= len(txt) <= 140) or not rx.search(txt) or href in seen or href.startswith(("mailto:", "javascript:")): continue
+        if not (12 <= len(txt) <= 140) or not rx.search(txt) or href in seen or href.startswith(("mailto:", "javascript:", "#")): continue
+        if not re.search(r"20\d\d|programme?|программ|apply|application|заявк|набор|регистрац|registration|deadline|дедлайн|открыт", txt, re.I): continue
         seen.add(href); e = make_event(src, txt, txt, href)
         if e: out.append(e)
         if len(out) >= 12: break
@@ -267,8 +285,9 @@ def main():
     seen, merged = set(), []
     for e in manual + events:
         k = e["url"] if e["url"] and e["source"] != "вручную" else e["title"].lower()
-        if k in seen: continue
-        seen.add(k); merged.append(e)
+        k2 = re.sub(r"\W+", " ", e["title"].lower()).strip()
+        if k in seen or ("t:" + k2) in seen: continue
+        seen.add(k); seen.add("t:" + k2); merged.append(e)
     merged.sort(key=lambda e: (e["dl_iso"] == "", e["dl_iso"]))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({"updated": dt.datetime.now().strftime("%d.%m.%Y %H:%M"), "events": merged}, ensure_ascii=False, indent=1), encoding="utf-8")
