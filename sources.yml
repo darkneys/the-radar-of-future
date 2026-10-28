@@ -32,3 +32,15 @@ sources:
 
   # Сюда добавляй источники вручную (например, новые Telegram-каналы).
   # Остальные источники берутся из таблицы: data/istochniki.xlsx -> python table_to_sources.py -> sources_table.yml
+
+  # ---- Google Alerts (RSS): создаёшь оповещение на google.com/alerts, в «Доставка» выбираешь RSS,
+  # ---- копируешь ссылку на ленту и вставляешь в list_url. Один блок на один запрос.
+  # - name: Alert: стажировка консалтинг 2027
+  #   type: rss
+  #   list_url: ВСТАВЬ_ССЫЛКУ_ИЗ_GOOGLE_ALERTS
+  #   org: Google Alerts
+  #   sec: intern
+  #   country: Международно
+  #   rf: проверить
+  #   tr: проверить
+  #   enabled: true

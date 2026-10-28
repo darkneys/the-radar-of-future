@@ -1,5 +1,5 @@
 """Парсер возможностей. Запуск: python parse.py   |   отладка: python parse.py --inspect URL"""
-import json, re, sys, time, hashlib, datetime as dt
+import json, re, sys, time, hashlib, signal, datetime as dt
 from pathlib import Path
 from urllib import robotparser
 from urllib.parse import urljoin, urlparse
@@ -11,18 +11,24 @@ OUT = ROOT / "docs" / "events.json"
 MANUAL = ROOT / "data" / "manual.json"
 HEAD = {"User-Agent": "Mozilla/5.0 (compatible; RadarBot/1.0; personal student project)"}
 U = "уточнить на сайте"
+INCL_DEFAULT = "стажир|internship|summer school|летн\\w+ школ|кейс|case championship|конференц|conference|summit|форум|fellowship|стипенд|scholarship|грант"
 MONTHS = {m: i for i, m in enumerate(
     "января февраля марта апреля мая июня июля августа сентября октября ноября декабря".split(), 1)}
 MRX = "|".join(MONTHS)
 DATE_RU = re.compile(rf"(\d{{1,2}})(?:\s*[–\-]\s*\d{{1,2}})?\s+({MRX})(?:\s+(\d{{4}}))?", re.I)
 DATE_NUM = re.compile(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b")
-DL_WORDS = re.compile(r"дедлайн|до\s*$|заявк\w*\s+(?:до|принимаются)|регистрац\w*\s+до|прием заявок|приём заявок|apply by|deadline", re.I)
+DL_WORDS = re.compile(r"дедлайн|apply\s+by|applications?\s+(?:close|due)|due\s+(?:on|by)?|closes?|до\s*$|заявк\w*\s+(?:до|принимаются)|регистрац\w*\s+до|прием заявок|приём заявок|apply by|deadline", re.I)
 SECTIONS = [
     ("case", r"кейс|case|чемпионат"),
     ("school", r"летн\w+\s+школ|summer school|школ\w+"),
     ("intern", r"стажир|internship|trainee|junior|аналитик"),
     ("summit", r"конференц|форум|саммит|summit|conference|симпозиум"),
 ]
+
+MEN = {m: i for i, m in enumerate("january february march april may june july august september october november december".split(), 1)}
+MEN_RX = "|".join(MEN)
+DATE_EN1 = re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+({MEN_RX})(?:,?\s+(\d{{4}}))?", re.I)
+DATE_EN2 = re.compile(rf"\b({MEN_RX})\s+(\d{{1,2}})(?!\d)(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?", re.I)
 
 def today(): return dt.date.today()
 
@@ -40,6 +46,15 @@ def find_dates(text):
         try: date = dt.date(y, mon, d)
         except ValueError: continue
         res.append((date, m.group(0), bool(DL_WORDS.search(text[max(0, m.start() - 35):m.start()]))))
+    for rx, order in ((DATE_EN1, (1, 2)), (DATE_EN2, (2, 1))):
+        for m in rx.finditer(text):
+            d, mon = int(m.group(order[0])), MEN[m.group(order[1]).lower()]
+            y = int(m.group(3)) if m.group(3) else today().year
+            try:
+                date = dt.date(y, mon, d)
+                if not m.group(3) and date < today() - dt.timedelta(days=30): date = dt.date(y + 1, mon, d)
+            except ValueError: continue
+            res.append((date, m.group(0), bool(DL_WORDS.search(text[max(0, m.start() - 35):m.start()]))))
     for m in DATE_NUM.finditer(text):
         try: date = dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
         except ValueError: continue
@@ -75,19 +90,25 @@ def make_event(src, title, text, url, extra=None):
     if dl and dl[0] < today(): return None  # дедлайн прошёл
     return e
 
+BLOCKED = set()
+
 def get(url, rp_cache={}):
     p = urlparse(url); base = f"{p.scheme}://{p.netloc}"
     if base not in rp_cache:
-        rp = robotparser.RobotFileParser(base + "/robots.txt")
-        try: rp.read()
-        except Exception: pass
+        rp = robotparser.RobotFileParser()
+        try:
+            r = requests.get(base + "/robots.txt", headers=HEAD, timeout=10)
+            if r.status_code == 200: rp.parse(r.text.splitlines())
+            else: rp.parse([])  # robots.txt нет: ограничений нет
+        except Exception:
+            rp.parse([])
         rp_cache[base] = rp
     try:
         if not rp_cache[base].can_fetch(HEAD["User-Agent"], url):
-            print(f"  robots.txt запрещает {url}, пропускаю"); return None
+            print(f"  robots.txt запрещает {url}, пропускаю"); BLOCKED.add(url); return None
     except Exception: pass
-    r = requests.get(url, headers=HEAD, timeout=25); r.raise_for_status()
-    time.sleep(1.5)
+    r = requests.get(url, headers=HEAD, timeout=15); r.raise_for_status()
+    time.sleep(1)
     return r.text
 
 def parse_telegram(src):
@@ -150,21 +171,52 @@ def parse_site(src):
             text = (it.select_one(sel["text"]).get_text(" ") if sel.get("text") and it.select_one(sel["text"]) else it.get_text(" "))
             e = make_event(src, ti.get_text(" ").strip(), text, urljoin(src["list_url"], a["href"]) if a and a.get("href") else src["list_url"])
             if e: out.append(e)
-    print(f"  JSON-LD/селекторы: найдено {len(out)}")
+    if not out:  # RSS-лента, объявленная на странице
+        feeds = [urljoin(src["list_url"], l["href"]) for l in soup.select('link[type*="rss"],link[type*="atom"]') if l.get("href")]
+        for f in feeds[:1]:
+            try:
+                x = get(f); out += rss_events(src, x) if x else []
+            except Exception as ex:
+                print("  RSS не прочитан:", str(ex)[:60])
+    if not out and src.get("harvest", True):
+        out = harvest_links(src, soup)
+    print(f"  JSON-LD/RSS/ссылки: найдено {len(out)}")
     return out
 
-def parse_rss(src):
+def rss_events(src, xml):
     import xml.etree.ElementTree as ET
-    xml = get(src["list_url"])
-    if not xml: return []
     rx = re.compile(src["include"], re.I) if src.get("include") else None
-    out = []
-    for it in ET.fromstring(xml.encode("utf-8")).iter("item"):
-        title = (it.findtext("title") or "").strip(); link = (it.findtext("link") or "").strip()
-        text = BeautifulSoup(it.findtext("description") or "", "html.parser").get_text(" ")
+    root = ET.fromstring(xml.encode("utf-8")); out = []
+    ns = "{http://www.w3.org/2005/Atom}"
+    for it in list(root.iter("item")) + list(root.iter(ns + "entry")):
+        title = (it.findtext("title") or it.findtext(ns + "title") or "").strip()
+        link = (it.findtext("link") or "").strip()
+        if not link:
+            l = it.find(ns + "link"); link = l.get("href", "") if l is not None else ""
+        desc = it.findtext("description") or it.findtext(ns + "summary") or it.findtext(ns + "content") or ""
+        text = BeautifulSoup(desc, "html.parser").get_text(" ")
+        title = BeautifulSoup(title, "html.parser").get_text(" ").strip()
+        if "google.com/url" in link:
+            from urllib.parse import parse_qs
+            link = parse_qs(urlparse(link).query).get("url", [link])[0]
         if rx and not rx.search(title + " " + text): continue
         e = make_event(src, title, title + ". " + text, link or src["list_url"])
         if e: out.append(e)
+    return out
+
+def parse_rss(src):
+    xml = get(src["list_url"])
+    return rss_events(src, xml) if xml else []
+
+def harvest_links(src, soup):
+    """Запасной вариант: ссылки со страницы, чей текст похож на программу или стажировку."""
+    rx = re.compile(src.get("include") or INCL_DEFAULT, re.I); seen, out = set(), []
+    for a in soup.select("a[href]"):
+        txt = a.get_text(" ", strip=True); href = urljoin(src["list_url"], a["href"])
+        if not (12 <= len(txt) <= 140) or not rx.search(txt) or href in seen or href.startswith(("mailto:", "javascript:")): continue
+        seen.add(href); e = make_event(src, txt, txt, href)
+        if e: out.append(e)
+        if len(out) >= 12: break
     return out
 
 def inspect(url):
@@ -186,7 +238,7 @@ def build_standalone():
 
 def main():
     cfg = yaml.safe_load((ROOT / "sources.yml").read_text(encoding="utf-8"))
-    dflt = cfg.get("defaults", {}); events = []
+    dflt = cfg.get("defaults", {}); events = []; stats = dict(есть=0, пусто=0, robots=0, ошибка=[])
     extra = ROOT / "sources_table.yml"
     if extra.exists():
         cfg["sources"] += (yaml.safe_load(extra.read_text(encoding="utf-8")) or {}).get("sources", [])
@@ -194,10 +246,20 @@ def main():
         if not src.get("enabled", True): continue
         src = {**dflt, **src}; print("•", src["name"])
         try:
+            if hasattr(signal, "SIGALRM"):  # жёсткий лимит 45 с на источник (Linux/GitHub Actions)
+                def _to(*a): raise TimeoutError("источник отвечает слишком долго")
+                signal.signal(signal.SIGALRM, _to); signal.alarm(45)
             got = {"telegram": parse_telegram, "rss": parse_rss}.get(src["type"], parse_site)(src)
             print(f"  найдено: {len(got)}"); events += got
-        except Exception as ex:
-            print("  ОШИБКА:", ex)
+            if got: stats["есть"] += 1
+            elif BLOCKED: stats["robots"] += 1
+            else: stats["пусто"] += 1
+            BLOCKED.clear()
+        except BaseException as ex:
+            if isinstance(ex, KeyboardInterrupt): raise
+            print("  ОШИБКА:", ex); stats["ошибка"].append(src["name"])
+        finally:
+            if hasattr(signal, "SIGALRM"): signal.alarm(0)
     manual = json.loads(MANUAL.read_text(encoding="utf-8")) if MANUAL.exists() else []
     for m in manual: m.setdefault("dl_iso", ""); m.setdefault("source", "вручную")
     seen, merged = set(), []
@@ -209,6 +271,8 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({"updated": dt.datetime.now().strftime("%d.%m.%Y %H:%M"), "events": merged}, ensure_ascii=False, indent=1), encoding="utf-8")
     build_standalone()
+    print(f"ИТОГ по источникам: с находками {stats['есть']}, пусто {stats['пусто']}, запрещено robots.txt {stats['robots']}, ошибок {len(stats['ошибка'])}")
+    if stats["ошибка"]: print("Ошибки в источниках:", "; ".join(stats["ошибка"][:15]))
     print(f"Готово: {len(merged)} мероприятий ({len(events)} новых из парсинга)")
 
 if __name__ == "__main__":
