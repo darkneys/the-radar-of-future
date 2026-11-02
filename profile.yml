@@ -1,0 +1,24 @@
+# Твой профиль: по нему считается рейтинг «подходит мне» (0–100) и проставляются теги интересов.
+# Слова — регулярные выражения без учёта регистра. Добавляй свои, если что-то не ловится.
+about: "Студентка бакалавриата (1–2 курс), живу в Софии (Болгария), говорю на русском и английском. Хочу самые сильные и престижные возможности."
+interests:
+  fin:
+    label: Финансы
+    words: "финанс|банк|инвест|аудит|бухгалт|налог|фондов|трейдинг|финтех|экономи|bank|financ|invest|audit|accounting|tax|equity|asset management|private equity|fintech|economics|cfa|m&a|treasury|wealth"
+  build:
+    label: Строительство
+    words: "строит|девелоп|архитект|недвижим|урбан|инфраструкт|инженер|энергет|bim|construction|civil engineer|real estate|architect|urban|infrastructure|built environment|engineering|energy|smart cit"
+  lead:
+    label: Управление и лидерство
+    words: "лидер|управлен|менеджмент|руковод|молодёжн\\w* форум|leader|leadership|management|governance|young leaders|change ?makers|summit|саммит|forum|форум|mba|public policy"
+  consult:
+    label: Консалтинг
+    words: "консалт|консультир|стратег|кейс|consult|strategy|case (?:competition|championship|challenge)|advisory|mckinsey|bcg|bain|deloitte|pwc|kpmg|\\bey\\b|kept|б1|яков и партн|оливер|oliver wyman|accenture|roland berger"
+  pm:
+    label: Проекты и продукт
+    words: "продукт|проектн\\w+ (?:менедж|управл)|управлени\\w+ проект|стартап|предприним|инноваци|product|project manag|\\bpm\\b|agile|scrum|startup|entrepreneur|innovation|venture|accelerat|акселерат"
+  it:
+    label: IT
+    words: "(?-i:\\bIT\\b)|ит-|айти|разработ|программ|данн|аналитик|машинн\\w+ обуч|искусственн\\w+ интеллект|\\bии\\b|кибер|цифров|хакатон|software|developer|engineering intern|data|analytics|machine learning|\\bai\\b|artificial intelligence|cyber|digital|tech|coding|hackathon|computer science"
+prestige: "goldman|morgan stanley|j\\.?p\\.? ?morgan|blackrock|mckinsey|bcg|bain|google|microsoft|amazon|meta|apple|harvard|oxford|cambridge|lse|london school|stanford|mit\\b|yale|insead|bocconi|eth zurich|st\\.? gallen|world bank|imf|un\\b|оон|one young world|hult|erasmus|chevening|daad|яндекс|сбер|т-банк|тинькофф|альфа|втб|газпромбанк|росатом|сколково|вшэ|мгу|мфти|changellenge|case-in|пмэф|potanin|потанин"
+avoid: "для школьников|школьник|\\d\\s*[-–]\\s*\\d+\\s*класс|senior|lead developer|head of|director|директор|руководитель отдела|опыт от \\d|от \\d+ лет опыта|phd only|postdoc"

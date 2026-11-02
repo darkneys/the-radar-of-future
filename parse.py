@@ -1,4 +1,6 @@
-"""Парсер возможностей. Запуск: python parse.py   |   отладка: python parse.py --inspect URL"""
+"""Парсер возможностей.
+Запуск: python parse.py   |   только ручные карточки: python parse.py --offline   |   отладка: python parse.py --inspect URL
+ИИ-разбор включается, если задан ключ LLM_API_KEY (или GEMINI_API_KEY), см. enrich.py."""
 import json, re, sys, time, hashlib, signal, datetime as dt
 from pathlib import Path
 from urllib import robotparser
@@ -19,19 +21,21 @@ DATE_RU = re.compile(rf"(\d{{1,2}})(?:\s*[–\-]\s*\d{{1,2}})?\s+({MRX})(?:\s+(\
 DATE_NUM = re.compile(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b")
 DL_WORDS = re.compile(r"дедлайн|apply\s+by|applications?\s+(?:close|due)|due\s+(?:on|by)?|closes?|до\s*$|заявк\w*\s+(?:до|принимаются)|регистрац\w*\s+до|прием заявок|приём заявок|apply by|deadline", re.I)
 SECTIONS = [
-    ("case", r"кейс|case|чемпионат"),
-    ("school", r"летн\w+\s+школ|summer school|школ\w+"),
-    ("intern", r"стажир|стаж[её]р|internship|trainee|junior|аналитик"),
-    ("grant", r"грант|стипенд|scholarship|fellowship|funding|financial\s+aid|bursary"),
-    ("summit", r"конференц|форум|саммит|summit|conference|симпозиум"),
+    ("case", r"кейс|case\s+(?:championship|competition|challenge)|чемпионат"),
+    ("school", r"летн\w+\s+школ|summer school|summer university|winter school|зимн\w+\s+школ|школ\w+"),
+    ("intern", r"стажир|стаж[её]р|internship|trainee|spring\s+(?:week|insight)|insight\s+(?:week|programme|program|day)|junior"),
+    ("grant", r"грант|стипенд|scholarship|fellowship|funding|financial\s+aid|bursary|fully\s+funded"),
+    ("conf", r"конференц|форум|саммит|summit|conference|симпозиум|symposium|congress|конгресс|forum"),
+    ("other", r"хакатон|hackathon|олимпиад|olympiad|акселератор|accelerator|конкурс|competition|challenge|prize"),
 ]
+SEC_ALIAS = {"summit": "conf"}
 
 MEN = {m: i for i, m in enumerate("january february march april may june july august september october november december".split(), 1)}
 MEN_RX = "|".join(MEN)
 DATE_EN1 = re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+({MEN_RX})(?:,?\s+(\d{{4}}))?", re.I)
 DATE_EN2 = re.compile(rf"\b({MEN_RX})\s+(\d{{1,2}})(?!\d)(?:st|nd|rd|th)?(?:,?\s+(\d{{4}}))?", re.I)
 
-OPP_RX = re.compile(r"стажир|стаж[её]р|internship|summer\s+school|летн\w+\s+школ|кейс-?чемпионат|case\s+(?:championship|competition)|fellowship|стипенд|scholarship|грант|конференц|conference|summit|саммит|симпозиум|форум|программ\w+\s+для\s+студент|insight|spring\s+week|trainee|traineeship|олимпиад|hackathon|хакатон", re.I)
+OPP_RX = re.compile(r"стажир|стаж[её]р|internship|summer\s+school|летн\w+\s+школ|кейс-?чемпионат|case\s+(?:championship|competition)|fellowship|стипенд|scholarship|грант|конференц|conference|summit|саммит|симпозиум|форум|программ\w+\s+для\s+студент|insight|spring\s+week|trainee|traineeship|олимпиад|hackathon|хакатон|конкурс|competition|чемпионат|акселератор|accelerator|award|prize|премия", re.I)
 NEG_RX = re.compile(r"\bsenior\b|\blead\b|director|head\s+of|\bvp\b|principal|manager|менеджер|ведущ|руководител|директор|от\s+\d+\s+лет|опыт\w*\s+от|experienced|top[\s-]*\d+|best\s+\d+|топ[\s-]*\d+|how\s+to|как\s+(?:получить|найти|попасть)|tips|советы|обзор|review|guide|cookie|privacy|sign\s*in|log\s*in|subscribe|подписа|казино|casino|crypto|ставки|реклама|школьн\\w+|для\\s+школьников|учеников|\\d\\s*[-–]\\s*\\d+\\s*класс|мем", re.I)
 
 CTA_RX = re.compile(r"заявк|регистрац|набор|откликн|подать|приём|прием|apply|registration|присоединя|ждём|ждем", re.I)
@@ -51,16 +55,16 @@ def score(title, text, dates, dl, cost):
 
 def today(): return dt.date.today()
 
-def find_dates(text):
-    """Возвращает список (date, original_text, is_deadline)."""
-    res = []
+def find_dates(text, ref=None):
+    """Возвращает список (date, original_text, is_deadline). ref — дата публикации: от неё считаем год, если он не указан."""
+    res = []; ref = ref or today()
     for m in DATE_RU.finditer(text):
         d, mon = int(m.group(1)), MONTHS[m.group(2).lower()]
         y = int(m.group(3)) if m.group(3) else None
         if y is None:
-            y = today().year
+            y = ref.year
             try:
-                if dt.date(y, mon, d) < today() - dt.timedelta(days=30): y += 1
+                if dt.date(y, mon, d) < ref - dt.timedelta(days=30): y += 1
             except ValueError: continue
         try: date = dt.date(y, mon, d)
         except ValueError: continue
@@ -68,10 +72,10 @@ def find_dates(text):
     for rx, order in ((DATE_EN1, (1, 2)), (DATE_EN2, (2, 1))):
         for m in rx.finditer(text):
             d, mon = int(m.group(order[0])), MEN[m.group(order[1]).lower()]
-            y = int(m.group(3)) if m.group(3) else today().year
+            y = int(m.group(3)) if m.group(3) else ref.year
             try:
                 date = dt.date(y, mon, d)
-                if not m.group(3) and date < today() - dt.timedelta(days=30): date = dt.date(y + 1, mon, d)
+                if not m.group(3) and date < ref - dt.timedelta(days=30): date = dt.date(y + 1, mon, d)
             except ValueError: continue
             res.append((date, m.group(0), bool(DL_WORDS.search(text[max(0, m.start() - 35):m.start()]))))
     for m in DATE_NUM.finditer(text):
@@ -93,19 +97,20 @@ def classify(text, default):
         if re.search(rx, text, re.I): return sec
     return default
 
-def make_event(src, title, text, url, extra=None):
+def make_event(src, title, text, url, extra=None, ref=None):
     extra = extra or {}
-    dates = find_dates(text)
+    dates = find_dates(text, ref)
     dl = next(((d, s) for d, s, isdl in dates if isdl), None)
     ev_dates = [(d, s) for d, s, isdl in dates if not isdl]
     first = (ev_dates[0] if ev_dates else None)
-    e = dict(sec=classify(title + " " + text, src.get("sec", "summit")), title=title.strip()[:140], org=src.get("org", src["name"]),
+    e = dict(sec=SEC_ALIAS.get(classify(title + " " + text, src.get("sec", "conf")), classify(title + " " + text, src.get("sec", "conf"))), title=title.strip()[:140], org=src.get("org", src["name"]),
              country=src.get("country", U), place=extra.get("place") or U, fmt=extra.get("fmt") or U,
              dates=extra.get("dates") or (first[1] if first else U),
              dl=(dl[1] if dl else U), dl_iso=(dl[0].isoformat() if dl else ""),
              cost=extra.get("cost") or find_cost(text), cond=U,
              desc=re.sub(r"\s+", " ", text).strip()[:400], url=url,
-             rf=src.get("rf", "проверить"), tr=src.get("tr", "проверить"), ok=0, source=src["name"])
+             rf=src.get("rf", "проверить"), tr=src.get("tr", "проверить"), ok=0, source=src["name"],
+             _raw=re.sub(r"\s+", " ", f"{title}. {text}").strip()[:1500])
     if dl and dl[0] < today(): return None  # дедлайн прошёл
     if not dl and ev_dates and max(d for d, s in ev_dates) < today() - dt.timedelta(days=7): return None  # событие уже прошло
     e["score"] = score(title, text, ev_dates, dl, e["cost"])
@@ -131,13 +136,17 @@ def get(url, rp_cache={}):
         if not rp_cache[base].can_fetch(HEAD["User-Agent"], url):
             print(f"  robots.txt запрещает {url}, пропускаю"); BLOCKED.add(url); return None
     except Exception: pass
-    r = requests.get(url, headers=HEAD, timeout=15); r.raise_for_status()
+    for attempt in range(2):  # один повтор при временной ошибке сервера
+        r = requests.get(url, headers=HEAD, timeout=15)
+        if r.status_code < 500 or attempt: break
+        time.sleep(3)
+    r.raise_for_status()
     time.sleep(1)
     return r.text
 
 SALARY_RX = re.compile(r"(\d[\d\s]*\s?₽|з/п[^|]*)\s*$", re.I)
 
-def split_digest(src, text, post_url):
+def split_digest(src, text, post_url, posted=None):
     """Подборка вакансий в одном посте («💳 стажер ... 60 000 ₽ | Москва | полный день») -> отдельные карточки."""
     segs = [s.strip(" \ufe0f\n") for s in re.split(r"(?=[\U0001F300-\U0001FAFF\u2600-\u27BF])", text)]
     vac = [s for s in segs if s.count("|") >= 2]
@@ -149,33 +158,90 @@ def split_digest(src, text, post_url):
         m = SALARY_RX.search(head)
         cost = m.group(1).strip() if m else None
         title = (head[:m.start()] if m else head).strip(" -–—")
-        e = make_event({**src, "min_score": 2}, title, s, f"{post_url}#v{i}", dict(place=parts[1][:60], fmt=parts[2][:40], cost=cost))
+        e = make_event({**src, "min_score": 2}, title, s, f"{post_url}#v{i}", dict(place=parts[1][:60], fmt=parts[2][:40], cost=cost), ref=posted)
         if e: out.append(e)
     return out
+
+def tg_title(text):
+    """Первая содержательная строка поста без эмодзи, звёздочек и хештегов."""
+    for l in text.split("\n"):
+        l = re.sub(r"[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F\u200d]+", "", l)
+        l = re.sub(r"^[^\w«\"(]+", "", l).strip(" *•▪—–-:#")
+        if len(re.findall(r"[A-Za-zА-Яа-яЁё]", l)) >= 8: return l[:140]
+    return "Пост"
+
+def tg_post_id(w):
+    a = w.select_one("a.tgme_widget_message_date")
+    m = re.search(r"/(\d+)(?:\?|$)", a.get("href", "")) if a else None
+    return int(m.group(1)) if m else None
 
 def parse_telegram(src):
     src = {**src, "min_score": max(src.get("min_score", 2), 3)}
     html = get(f"https://t.me/s/{src['channel']}")
     if not html: return []
-    soup = BeautifulSoup(html, "html.parser"); out = []
+    wraps = BeautifulSoup(html, "html.parser").select("div.tgme_widget_message_wrap"); out = []
+    for _ in range(src.get("pages", 2) - 1):  # листаем назад: примерно по 20 постов на страницу
+        ids = [i for i in map(tg_post_id, wraps) if i]
+        if not ids: break
+        more = get(f"https://t.me/s/{src['channel']}?before={min(ids)}")
+        older = BeautifulSoup(more or "", "html.parser").select("div.tgme_widget_message_wrap")
+        if not older: break
+        wraps = older + wraps
     rx = re.compile(src["include"], re.I) if src.get("include") else None
-    for w in soup.select("div.tgme_widget_message_wrap"):
+    for w in wraps:
         t = w.select_one(".tgme_widget_message_text")
         if not t: continue
         text = t.get_text("\n").strip()
         if rx and not rx.search(text): continue
-        a = w.select_one("a.tgme_widget_message_date"); tm = w.select_one("time")
+        a = w.select_one("a.tgme_widget_message_date"); tm = w.select_one("time"); posted = None
         if tm and tm.get("datetime"):
             try:
-                age = (today() - dt.datetime.fromisoformat(tm["datetime"]).date()).days
-                if age > src.get("max_age_days", 90): continue
+                posted = dt.datetime.fromisoformat(tm["datetime"]).date()
+                if (today() - posted).days > src.get("max_age_days", 90): continue
             except ValueError: pass
         purl = a["href"] if a else f"https://t.me/{src['channel']}"
-        dig = split_digest(src, text, purl)
+        dig = split_digest(src, text, purl, posted)
         if dig is not None: out += dig; continue
-        title = next((l.strip(" •▪️🚀*") for l in text.split("\n") if l.strip()), "Пост")
-        e = make_event(src, title, text, purl)
+        e = make_event(src, tg_title(text), text, purl, ref=posted)
         if e: out.append(e)
+    return out
+
+def parse_futuretoday(src):
+    """FutureToday (fut.ru): карточки лежат в JSON страницы (__NEXT_DATA__): название, компания, дедлайн."""
+    html = get(src["list_url"])
+    if not html: return []
+    tag = BeautifulSoup(html, "html.parser").select_one("#__NEXT_DATA__")
+    if not tag: return []
+    found = []
+    def walk(o):
+        if isinstance(o, dict):
+            if "publication_type" in o and "alias" in o and "title" in o: found.append(o); return
+            for v in o.values(): walk(v)
+        elif isinstance(o, list):
+            for v in o: walk(v)
+    walk(json.loads(tag.string))
+    host = "{0.scheme}://{0.netloc}".format(urlparse(src["list_url"])); out, seen = [], set()
+    months = list(MONTHS)
+    for o in found:
+        comp = o.get("company") or {}; ptype = (o.get("publication_type") or {}).get("alias", "internship")
+        if not comp.get("alias"): continue
+        url = f"{host}/{ptype}/{comp['alias']}/{o['alias']}"
+        if url in seen: continue
+        seen.add(url)
+        org = comp.get("caption") or "FutureToday"; title = (o.get("title") or "").strip()
+        if org.lower() not in title.lower(): title = f"{title} — {org}"
+        tags = ", ".join(t.get("caption", "") for t in (o.get("tags") or []) if isinstance(t, dict))
+        text = " ".join(x for x in [o.get("slogan"), o.get("description"), o.get("seo_description"), tags] if x)
+        e = make_event({**src, "org": org, "min_score": -99}, title, ("стажировка. " if ptype == "internship" else "") + text, url)
+        if not e: continue
+        try:
+            d = dt.date.fromisoformat((o.get("last_position_end_date") or "")[:10])
+            if d.month == 1 and d.day == 1: d -= dt.timedelta(days=1)  # «до 1 января» на сайте показывается как «до 31 декабря»
+            if today() <= d <= today() + dt.timedelta(days=300):
+                e["dl"] = f"{d.day} {months[d.month - 1]} {d.year}"; e["dl_iso"] = d.isoformat()
+        except ValueError: pass
+        if ptype == "internship": e["sec"] = "intern"
+        out.append(e)
     return out
 
 def jsonld_events(soup):
@@ -281,6 +347,9 @@ def build_standalone():
     t = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
     data = OUT.read_text(encoding="utf-8").replace("</", "<\\/")
     t = t.replace('fetch("events.json").then(r=>r.json())', "Promise.resolve(" + data + ")")
+    nf = ROOT / "docs" / "news.json"
+    if nf.exists():
+        t = t.replace('fetch("news.json").then(r=>r.json())', "Promise.resolve(" + nf.read_text(encoding="utf-8").replace("</", "<\\/") + ")")
     (ROOT / "docs" / "radar.html").write_text(t, encoding="utf-8")
 
 def main():
@@ -289,14 +358,15 @@ def main():
     extra = ROOT / "sources_table.yml"
     if extra.exists():
         cfg["sources"] += (yaml.safe_load(extra.read_text(encoding="utf-8")) or {}).get("sources", [])
-    for src in cfg["sources"]:
+    offline = "--offline" in sys.argv  # только ручные карточки и ИИ-разбор, без обхода источников
+    for src in ([] if offline else cfg["sources"]):
         if not src.get("enabled", True): continue
         src = {**dflt, **src}; print("•", src["name"])
         try:
             if hasattr(signal, "SIGALRM"):  # жёсткий лимит 45 с на источник (Linux/GitHub Actions)
                 def _to(*a): raise TimeoutError("источник отвечает слишком долго")
                 signal.signal(signal.SIGALRM, _to); signal.alarm(45)
-            got = {"telegram": parse_telegram, "rss": parse_rss}.get(src["type"], parse_site)(src)
+            got = {"telegram": parse_telegram, "rss": parse_rss, "futuretoday": parse_futuretoday}.get(src["type"], parse_site)(src)
             print(f"  найдено: {len(got)}"); events += got
             if got: stats["есть"] += 1
             elif BLOCKED: stats["robots"] += 1
@@ -308,16 +378,26 @@ def main():
         finally:
             if hasattr(signal, "SIGALRM"): signal.alarm(0)
     manual = [m for f in sorted((ROOT / "data").glob("manual*.json")) for m in json.loads(f.read_text(encoding="utf-8"))]
-    for m in manual: m.setdefault("dl_iso", ""); m.setdefault("source", "вручную")
+    for m in manual:
+        m.setdefault("dl_iso", ""); m.setdefault("source", "вручную"); m.setdefault("ok", 1)
+        m["sec"] = SEC_ALIAS.get(m.get("sec"), m.get("sec", "conf"))
     seen, merged = set(), []
     for e in manual + events:
-        k = e["url"] if e["url"] and e["source"] != "вручную" else e["title"].lower()
+        k = e["url"] if e["url"] and e.get("source") != "вручную" else e["title"].lower()
         k2 = re.sub(r"\W+", " ", e["title"].lower()).strip()
         if k in seen or ("t:" + k2) in seen: continue
         seen.add(k); seen.add("t:" + k2); merged.append(e)
-    merged.sort(key=lambda e: (e["dl_iso"] == "", e["dl_iso"]))
+    from enrich import enrich, finalize
+    merged, n_llm = enrich(merged)
+    merged = finalize(merged, OUT)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"updated": dt.datetime.now().strftime("%d.%m.%Y %H:%M"), "events": merged}, ensure_ascii=False, indent=1), encoding="utf-8")
+    OUT.write_text(json.dumps({"updated": dt.datetime.now().strftime("%d.%m.%Y %H:%M"), "updated_iso": today().isoformat(),
+                               "count": len(merged), "events": merged}, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"ИИ-разбор: обработано новых записей {n_llm}")
+    try:
+        import news; print("• Деловая лента"); news.build()
+    except Exception as ex:
+        print("  Деловая лента: ошибка", ex)
     build_standalone()
     print(f"ИТОГ по источникам: с находками {stats['есть']}, пусто {stats['пусто']}, запрещено robots.txt {stats['robots']}, ошибок {len(stats['ошибка'])}")
     if stats["ошибка"]: print("Ошибки в источниках:", "; ".join(stats["ошибка"][:15]))

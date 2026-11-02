@@ -1,0 +1,29 @@
+# Бизнес-новости для блока «Деловая лента» на главной.
+# region: ru | intl. topics: какие теги интересов ставить по умолчанию (fin, build, lead, consult, pm, it).
+# strict: true — брать из ленты только деловые новости (совпадение с интересами или слова про рынки, компании, сделки).
+# Добавь свою ленту: любой RSS-адрес. Telegram-канал: type: telegram, channel: имя_без_собаки.
+settings:
+  max_age_hours: 72     # новости старше не показываем
+  per_source: 6         # не больше N новостей с одного источника
+  total: 36             # всего в ленте
+feeds:
+  - {name: Ведомости. Бизнес,   url: "https://www.vedomosti.ru/rss/rubric/business",   region: ru, topics: [lead]}
+  - {name: Ведомости. Финансы,  url: "https://www.vedomosti.ru/rss/rubric/finance",    region: ru, topics: [fin]}
+  - {name: Ведомости. Технологии, url: "https://www.vedomosti.ru/rss/rubric/technology", region: ru, topics: [it]}
+  - {name: Ведомости. Недвижимость, url: "https://www.vedomosti.ru/rss/rubric/realty", region: ru, topics: [build]}
+  - {name: Ведомости. Менеджмент, url: "https://www.vedomosti.ru/rss/rubric/management", region: ru, topics: [lead, consult]}
+  - {name: Коммерсантъ. Бизнес, url: "https://www.kommersant.ru/RSS/section-business.xml", region: ru, topics: [lead]}
+  - {name: Коммерсантъ. Финансы, url: "https://www.kommersant.ru/RSS/section-finance.xml", region: ru, topics: [fin]}
+  - {name: Frank Media,         url: "https://frankmedia.ru/feed",                       region: ru, topics: [fin]}
+  - {name: Строительная газета, url: "https://www.stroygaz.ru/rss/",                     region: ru, topics: [build]}
+  - {name: The Bell,            type: telegram, channel: thebell_io,                      region: ru, topics: [fin, lead]}
+  - {name: Bloomberg Markets,   url: "https://feeds.bloomberg.com/markets/news.rss",    region: intl, topics: [fin]}
+  - {name: BBC Business,        url: "https://feeds.bbci.co.uk/news/business/rss.xml",   region: intl, topics: [lead], strict: true}
+  - {name: The Guardian Business, url: "https://www.theguardian.com/uk/business/rss",   region: intl, topics: [lead], strict: true}
+  - {name: CNBC,                url: "https://www.cnbc.com/id/10001147/device/rss/rss.html", region: intl, topics: [fin]}
+  - {name: WSJ Markets,         url: "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",    region: intl, topics: [fin]}
+  - {name: The Economist. Business, url: "https://www.economist.com/business/rss.xml",   region: intl, topics: [lead, consult], strict: true}
+  - {name: The Economist. Finance, url: "https://www.economist.com/finance-and-economics/rss.xml", region: intl, topics: [fin], strict: true}
+  - {name: TechCrunch,          url: "https://techcrunch.com/feed/",                     region: intl, topics: [it, pm], strict: true}
+  - {name: Sifted,              url: "https://sifted.eu/feed",                           region: intl, topics: [pm, it]}
+  - {name: Global Construction Review, url: "https://www.globalconstructionreview.com/feed/", region: intl, topics: [build]}

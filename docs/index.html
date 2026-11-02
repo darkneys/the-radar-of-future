@@ -1,47 +1,647 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Радар возможностей</title>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Радар будущего — возможности для студента</title>
+<meta name="description" content="Конференции, стипендии, кейс-чемпионаты, стажировки и летние школы в России и в мире. Обновляется каждый день.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2215%22 fill=%22%23FF5A36%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%229%22 fill=%22none%22 stroke=%22%2317140F%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%223%22 fill=%22%2317140F%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600;1,800&family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f7f7f5;--card:#fff;--tx:#1d1d1f;--mu:#6b6b70;--bd:#e2e2dd;--ac:#1f3864;--ok:#d7f0dd;--wn:#fbefc4;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171b;--card:#1e2126;--tx:#ececee;--mu:#9a9aa2;--bd:#2d3138;--ac:#8fb0ff;--ok:#1f4a2c;--wn:#4d4118;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#15171b;--card:#1e2126;--tx:#ececee;--mu:#9a9aa2;--bd:#2d3138;--ac:#8fb0ff;--ok:#1f4a2c;--wn:#4d4118;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 Arial,Helvetica,sans-serif}
-.w{max-width:980px;margin:0 auto;padding:20px 16px 48px}h1{margin:0 0 4px;font-size:26px}.sub{color:var(--mu);margin:0 0 14px}
-.nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
-button,input,select{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:9px 10px;min-width:0}
-.nav button{white-space:nowrap;cursor:pointer;border-radius:999px;padding:7px 14px}.nav button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
-.bar{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:10px}
-.cnt{color:var(--mu);margin:0 0 10px}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
-.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.nm{font-weight:700;font-size:17px}.org{color:var(--mu)}
-.b{font-size:12px;border-radius:6px;padding:2px 8px;white-space:nowrap;color:var(--tx)}.b.ok{background:var(--ok)}.b.wn{background:var(--wn)}
-dl{display:grid;grid-template-columns:110px 1fr;gap:4px 10px;margin:10px 0}dt{color:var(--mu)}dd{margin:0}
-.tags{display:flex;flex-wrap:wrap;gap:6px}.t{font-size:12px;border:1px solid var(--bd);border-radius:6px;padding:2px 7px}a{color:var(--ac)}
-@media(max-width:520px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
-</style></head><body><div class="w"><h1>Радар возможностей</h1><p class="sub" id="sub">Школы, стажировки, кейсы и саммиты с условиями, датами и ценой. Бейдж «проверено» значит, что данные сверены с источником; «уточнить» значит, что заполнено не полностью.</p>
-<div class="nav" id="nav"></div><div class="bar" id="bar"></div><p class="cnt" id="cnt"></p><div id="list"></div></div>
+:root{
+  --paper:#FAF6EE; --sheet:#FFFDF8; --ink:#17140F; --ink-2:#3A352D; --mute:#6E675C; --rule:rgba(23,20,15,.14); --rule-2:rgba(23,20,15,.07);
+  --conf:#FF5A36; --grant:#2350FF; --case:#FFC21A; --intern:#00A86B; --school:#FF4FA3; --other:#14B8C4;
+  --on-grant:#fff;
+  --f-display:'Playfair Display','Times New Roman',serif; --f-body:'Onest','Segoe UI',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --r-sm:4px; --r-md:8px; --r-lg:14px;
+  --pad:clamp(16px,4vw,40px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--grant);outline-offset:2px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 12px;z-index:99}
+.skip:focus{left:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- masthead ---------- */
+.strip{border-bottom:1px solid var(--ink);padding:10px 0;display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.strip .mono{color:var(--ink-2)}
+.mast{padding:clamp(18px,3vw,34px) 0 clamp(14px,2vw,22px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;border-bottom:3px double var(--ink)}
+.brand{font-family:var(--f-display);font-weight:900;font-size:clamp(48px,9.5vw,132px);line-height:.86;letter-spacing:-.025em;margin:0}
+.brand em{font-weight:800;font-style:italic;color:var(--conf)}
+.brand .dot{color:var(--grant)}
+.deck{max-width:380px;margin:0;color:var(--ink-2);font-size:15px}
+.deck b{color:var(--ink)}
+.dotlist{display:flex;gap:6px;margin-top:12px}
+.dotlist i{width:14px;height:14px;border-radius:50%;display:block}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;gap:10px;align-items:center;min-height:58px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tabs.clip{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.tabs.clip.end{-webkit-mask-image:none;mask-image:none}
+.tab{white-space:nowrap;background:none;border:0;padding:10px 9px;cursor:pointer;font-weight:600;font-size:14px;border-radius:999px;display:flex;align-items:center;gap:7px;min-height:44px;color:var(--ink-2)}
+.tab:hover{background:var(--rule-2);color:var(--ink)}
+.tab[aria-current="true"]{background:var(--ink);color:var(--paper)}
+.tab .sw{width:9px;height:9px;border-radius:50%}
+.tab .n{font-family:var(--f-mono);font-size:11px;opacity:.6}
+.seg{display:flex;border:1px solid var(--ink);border-radius:999px;padding:2px;flex:none}
+.seg button{border:0;background:none;padding:7px 12px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px;min-height:36px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* ---------- tag/kicker ---------- */
+.kick{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.kick .sq{width:10px;height:10px;border-radius:2px;background:currentColor}
+.c-conf{--c:var(--conf)} .c-grant{--c:var(--grant)} .c-case{--c:var(--case)} .c-intern{--c:var(--intern)} .c-school{--c:var(--school)} .c-other{--c:var(--other)}
+.kick .sq{background:var(--c)}
+.chip{display:inline-block;font-size:12.5px;font-weight:500;border:1px solid var(--rule);border-radius:999px;padding:2px 9px;color:var(--ink-2);background:var(--sheet)}
+.chip.hot{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.fund{background:#E4F6EC;border-color:#BFE6CF;color:#0B5A37}
+.match{font-family:var(--f-mono);font-size:12px;font-weight:600}
+.bar{height:4px;border-radius:2px;background:var(--rule-2);overflow:hidden;width:64px;display:inline-block;vertical-align:middle;margin-left:6px}
+.bar i{display:block;height:100%;background:var(--ink)}
+
+/* ---------- issue: cover ---------- */
+section{padding:clamp(26px,4vw,48px) 0}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-top:2px solid var(--ink);padding-top:10px;margin-bottom:20px}
+.sec-h h2{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.05;margin:0;letter-spacing:-.01em}
+.sec-h h2 em{font-style:italic;font-weight:600}
+.more{background:none;border:0;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:4px;padding:8px 0;white-space:nowrap}
+.cover{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(18px,3vw,36px)}
+.lead{background:var(--c);color:var(--ink);border-radius:var(--r-lg);padding:clamp(22px,3.5vw,44px);display:flex;flex-direction:column;justify-content:space-between;min-height:440px;cursor:pointer;position:relative;overflow:hidden;border:0;text-align:left}
+.lead.c-grant{color:var(--on-grant)}
+.lead .big{font-family:var(--f-display);font-weight:900;font-size:clamp(32px,4.6vw,62px);line-height:.98;letter-spacing:-.02em;margin:18px 0 14px;max-width:16ch}
+.lead p{font-size:17px;max-width:46ch;margin:0 0 20px}
+.lead .meta{display:flex;flex-wrap:wrap;gap:18px;border-top:1px solid currentColor;padding-top:14px}
+.lead .meta div{min-width:120px}
+.lead .meta b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
+.lead .rings{position:absolute;right:-90px;top:-90px;width:300px;height:300px;opacity:.22;pointer-events:none}
+.side{display:flex;flex-direction:column}
+.side .story{padding:16px 0;border-bottom:1px solid var(--rule);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;text-align:left}
+.side .story:first-child{padding-top:0}
+.story h3{font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1.12;margin:8px 0 6px}
+.story:hover h3,.card:hover h3,.row:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.story p{margin:0;color:var(--ink-2);font-size:14.5px}
+.story .foot{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+
+/* ---------- hot deadlines ---------- */
+.hot{background:var(--ink);color:var(--paper)}
+.hot .sec-h{border-color:var(--paper)}
+.ticker{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:0;overflow-x:auto;scrollbar-width:thin;padding-bottom:6px}
+.tick{border-left:1px solid rgba(250,246,238,.22);padding:4px 20px 8px;cursor:pointer;background:none;border-top:0;border-right:0;border-bottom:0;color:inherit;text-align:left}
+.tick:first-child{border-left:0;padding-left:0}
+.tick .num{font-family:var(--f-display);font-weight:900;font-size:64px;line-height:1;color:var(--c)}
+.tick .num small{font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--paper);margin-left:6px}
+.tick h3{font-size:16px;font-weight:600;line-height:1.3;margin:8px 0 4px}
+.tick .mono{opacity:.7;font-size:11px}
+.empty-hot{color:rgba(250,246,238,.75)}
+
+/* ---------- rubric blocks ---------- */
+.rubrics{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px)}
+.rubric{border-top:6px solid var(--c);padding-top:14px}
+.rubric h3.rt{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline}
+.rubric h3.rt span{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--mute)}
+.rubric .row{padding:12px 0;border-top:1px solid var(--rule);cursor:pointer;display:block;width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left}
+.row h3{font-size:16.5px;font-weight:600;line-height:1.3;margin:0 0 4px}
+.row .sub{font-size:13.5px;color:var(--mute)}
+.rubric .all{margin-top:6px}
+
+/* ---------- catalog ---------- */
+.cat-head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:18px}
+.cat-head h2{font-family:var(--f-display);font-weight:900;font-size:clamp(38px,6vw,76px);line-height:.95;margin:6px 0 0;letter-spacing:-.02em}
+.cat-head p{margin:10px 0 0;color:var(--ink-2);max-width:60ch}
+.filters{display:grid;gap:12px;padding:16px;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r-lg);margin-bottom:22px}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.frow .lab{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);min-width:92px}
+.search{flex:1;min-width:220px;border:1px solid var(--rule);background:var(--paper);border-radius:var(--r-md);padding:11px 14px;font-size:15px}
+.tog{border:1px solid var(--rule);background:var(--paper);border-radius:999px;padding:7px 13px;cursor:pointer;font-size:14px;font-weight:500;min-height:38px}
+.tog[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tog .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;background:var(--c)}
+select.sel{border:1px solid var(--rule);background:var(--paper);border-radius:var(--r-md);padding:9px 12px;min-height:40px}
+.count{font-family:var(--f-mono);font-size:12px;color:var(--mute);margin:0 0 12px;text-transform:uppercase;letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r-lg);padding:20px 20px 16px;display:flex;flex-direction:column;gap:10px;position:relative}
+.card .top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.card h3{font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1.15;margin:0;cursor:pointer}
+.card .org{color:var(--mute);font-size:14px;margin-top:-4px}
+.card p.d{margin:0;color:var(--ink-2);font-size:14.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid var(--rule);padding-top:10px}
+.facts b{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.facts span{font-size:13.5px;line-height:1.35}
+.dlsoon{color:#C2321A;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.acts{display:flex;gap:6px;align-items:center;margin-top:auto;padding-top:4px;flex-wrap:wrap}
+.btn{border:1px solid var(--ink);background:none;border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:14px;min-height:40px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.ghost{border-color:transparent}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.saved{background:var(--case);border-color:var(--case);color:var(--ink)}
+.btn svg{width:16px;height:16px}
+.grow{flex:1}
+.load-more{display:flex;justify-content:center;margin-top:24px}
+.none{padding:48px 20px;text-align:center;border:1px dashed var(--rule);border-radius:var(--r-lg);color:var(--ink-2)}
+.none h3{font-family:var(--f-display);font-size:26px;margin:0 0 8px;color:var(--ink)}
+
+/* ---------- plan (kanban) ---------- */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
+.col{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r-lg);padding:14px;min-height:180px}
+.col h3{margin:0 0 10px;font-family:var(--f-display);font-size:21px;display:flex;justify-content:space-between;align-items:baseline}
+.col h3 span{font-family:var(--f-mono);font-size:12px;color:var(--mute)}
+.mini{border-top:1px solid var(--rule);padding:10px 0;display:grid;gap:6px}
+.mini h4{margin:0;font-size:15px;line-height:1.3;cursor:pointer}
+.mini .sub{font-size:12.5px;color:var(--mute)}
+.mini select{font-size:13px;padding:5px 8px;border-radius:6px;border:1px solid var(--rule);background:var(--paper)}
+.col .hint{font-size:13.5px;color:var(--mute)}
+
+/* ---------- calendar agenda ---------- */
+.month{display:grid;grid-template-columns:200px 1fr;gap:20px;border-top:2px solid var(--ink);padding:16px 0}
+.month h3{font-family:var(--f-display);font-weight:900;font-size:36px;margin:0;line-height:1;text-transform:capitalize}
+.month h3 small{display:block;font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--mute);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
+.ag{display:grid;grid-template-columns:62px 1fr auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left}
+.ag .day{font-family:var(--f-display);font-weight:900;font-size:30px;line-height:1;color:var(--ink)}
+.ag .day small{display:block;font-family:var(--f-mono);font-size:10px;color:var(--mute);font-weight:600}
+.ag h4{margin:0;font-size:16px;font-weight:600}
+.ag .what{font-family:var(--f-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:var(--c);color:var(--ink)}
+.ag .what.c-grant{color:#fff}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(23,20,15,.42);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--paper);z-index:51;transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dr-band{background:var(--c);padding:22px 24px 26px;color:var(--ink)}
+.dr-band.c-grant{color:#fff}
+.dr-band .x{float:right;border:0;background:rgba(255,255,255,.35);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:22px;line-height:1;color:inherit}
+.dr-band h2{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,4vw,38px);line-height:1.04;margin:16px 0 6px}
+.dr-band .org{opacity:.85}
+.dr-body{padding:22px 24px 32px;display:grid;gap:18px}
+.dr-body dl{display:grid;grid-template-columns:130px 1fr;gap:10px 16px;margin:0}
+.dr-body dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+.dr-body dd{margin:0}
+.dr-body p{margin:0;font-size:16px}
+.status-pick{display:flex;flex-wrap:wrap;gap:6px}
+.note{font-size:13px;color:var(--mute)}
+
+/* ---------- footer ---------- */
+footer{border-top:3px double var(--ink);margin-top:30px;padding:26px 0 40px;display:grid;grid-template-columns:2fr 1fr;gap:24px;color:var(--ink-2);font-size:14px}
+footer h3{font-family:var(--f-display);font-size:24px;margin:0 0 6px;color:var(--ink)}
+footer p{margin:0 0 6px}
+
+/* skeleton */
+.sk{background:linear-gradient(90deg,var(--rule-2),rgba(23,20,15,.12),var(--rule-2));background-size:200% 100%;animation:sk 1.2s infinite;border-radius:var(--r-md)}
+@keyframes sk{to{background-position:-200% 0}}
+/* ---------- деловая лента ---------- */
+.news .ntags{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 18px}
+.ncols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px)}
+.ncols.one{grid-template-columns:1fr}
+.ncol h3.nh{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0;padding:8px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between}
+.ni{display:block;text-decoration:none;padding:12px 0;border-bottom:1px solid var(--rule)}
+.ni:hover h4{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.ni .nm{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.04em;color:var(--mute);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ni .nm b{color:var(--ink-2);font-weight:600}
+.ni .nm .nt{border:1px solid var(--rule);border-radius:999px;padding:0 7px;text-transform:none;letter-spacing:0}
+.ni h4{margin:4px 0 0;font-size:16px;line-height:1.32;font-weight:600}
+.ni.first h4{font-family:var(--f-display);font-weight:800;font-size:clamp(21px,2.2vw,26px);line-height:1.15;margin-top:6px}
+.ni.first p{margin:6px 0 0;color:var(--ink-2);font-size:14.5px}
+.news .nfoot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-top:14px;color:var(--mute);font-size:13px}
+@media (max-width:760px){.ncols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+@media (max-width:1000px){
+  .cover{grid-template-columns:1fr}
+  .rubrics{grid-template-columns:1fr 1fr}
+  .board{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .mast{grid-template-columns:1fr}
+  .rubrics,.grid,.board{grid-template-columns:1fr}
+  .lead{min-height:0}
+  .facts{grid-template-columns:1fr 1fr}
+  .month{grid-template-columns:1fr;gap:8px}
+  .cat-head{grid-template-columns:1fr}
+  .nav .wrap{flex-wrap:wrap;padding-top:6px;padding-bottom:6px;gap:6px}
+  .tabs{order:2;flex-basis:100%}
+  .seg{margin-left:auto}
+  .frow .lab{min-width:100%}
+  footer{grid-template-columns:1fr}
+  .dr-body dl{grid-template-columns:1fr;gap:2px}
+  .dr-body dd{margin-bottom:8px}
+  .ag{grid-template-columns:50px 1fr}
+  .ag .what{grid-column:2;justify-self:start}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="wrap">
+  <div class="strip">
+    <span class="mono" id="issue">Выпуск · загрузка</span>
+    <span class="mono" id="upd"></span>
+  </div>
+  <div class="mast">
+    <h1 class="brand">Радар <em>будущего</em><span class="dot">.</span></h1>
+    <div>
+      <p class="deck">Конференции, стипендии, кейс-чемпионаты, стажировки и летние школы — <b>в России и в мире</b>. Отобрано под финансы, строительство, лидерство, консалтинг, продукт и IT.</p>
+      <div class="dotlist" aria-hidden="true"><i style="background:var(--conf)"></i><i style="background:var(--grant)"></i><i style="background:var(--case)"></i><i style="background:var(--intern)"></i><i style="background:var(--school)"></i><i style="background:var(--other)"></i></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Разделы">
+  <div class="wrap">
+    <div class="tabs" id="tabs" role="list"></div>
+    <div class="seg" role="group" aria-label="Регион" id="region">
+      <button data-r="all" aria-pressed="true">Все</button><button data-r="ru" aria-pressed="false">Россия</button><button data-r="intl" aria-pressed="false">Мир</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main" class="wrap" tabindex="-1">
+  <div id="view">
+    <section aria-busy="true"><div class="cover"><div class="sk" style="height:440px"></div><div style="display:grid;gap:14px"><div class="sk" style="height:130px"></div><div class="sk" style="height:130px"></div><div class="sk" style="height:130px"></div></div></div></section>
+  </div>
+</main>
+
+<footer class="wrap">
+  <div>
+    <h3>Как устроен радар</h3>
+    <p>Каждое утро парсер собирает возможности из Telegram-каналов, RSS и сайтов, ИИ раскладывает их по полям, а рейтинг «совпадение» показывает, насколько возможность подходит под твои интересы.</p>
+    <p>Карточки с пометкой «подборка» проверены вручную. Остальные сверяй с официальным сайтом перед подачей.</p>
+  </div>
+  <div>
+    <p class="mono">Избранное и статусы хранятся в этом браузере.</p>
+    <p><button class="more" id="exportPlan">Скачать мой план (.json)</button></p>
+    <p><button class="more" id="showHidden">Вернуть скрытые карточки</button></p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drTitle" aria-hidden="true"></aside>
+
 <script>
-let EV=[];const SRC=[{"id": 1, "cat": "Агрегаторы: международные", "name": "Youth Opportunities", "site": "https://www.youthop.com/", "what": "конференции, стажировки, стипендии, летние школы, саммиты", "type": "все типы", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "высокий"}, {"id": 2, "cat": "Агрегаторы: международные", "name": "Opportunities for Youth", "site": "https://opportunitiesforyouth.org/", "what": "стажировки, стипендии, fellowships, конференции", "type": "все типы", "rf": "проверить", "tr": "да", "method": "HTML / RSS", "prio": "высокий"}, {"id": 3, "cat": "Агрегаторы: международные", "name": "Eurodesk Opportunity Finder", "site": "https://programmes.eurodesk.eu/en", "what": "стажировки, обмены, гранты, события", "type": "все типы", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "высокий"}, {"id": 4, "cat": "Агрегаторы: международные", "name": "Opportunity Desk", "site": "https://opportunitydesk.org/", "what": "fellowships, конференции, стажировки", "type": "все типы", "rf": "проверить", "tr": "да", "method": "RSS / HTML", "prio": "средний"}, {"id": 5, "cat": "Агрегаторы: международные", "name": "Scholarship Positions", "site": "https://scholarship-positions.com/", "what": "летние школы, стажировки, стипендии", "type": "все типы", "rf": "проверить", "tr": "да", "method": "HTML / RSS", "prio": "средний"}, {"id": 6, "cat": "Агрегаторы: международные", "name": "DAAD", "site": "https://www.daad.de/en/", "what": "летние школы, стипендии, короткие курсы", "type": "летние школы / стипендии", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 7, "cat": "Агрегаторы: международные", "name": "Studyportals / Mastersportal", "site": "https://www.mastersportal.com/", "what": "летние школы, короткие курсы", "type": "летние школы", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 8, "cat": "Агрегаторы: международные", "name": "Erasmus+ / Еврокомиссия", "site": "https://erasmus-plus.ec.europa.eu/", "what": "стажировки, обмены, финансирование", "type": "стажировки / гранты", "rf": "нет (как правило)", "tr": "частично", "method": "HTML", "prio": "средний"}, {"id": 9, "cat": "Агрегаторы: международные", "name": "WikiCFP / ConferenceIndex", "site": "https://wikicfp.com/cfp/", "what": "академические конференции, дедлайны", "type": "конференции", "rf": "да", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 10, "cat": "Агрегаторы: Россия", "name": "Leader-ID", "site": "https://leader-id.ru/", "what": "конференции, форумы, кейс-чемпионаты, школы", "type": "все типы", "rf": "да", "tr": "проверить", "method": "API / HTML", "prio": "высокий"}, {"id": 11, "cat": "Агрегаторы: Россия", "name": "Timepad", "site": "https://www.timepad.ru/", "what": "конференции, митапы", "type": "конференции", "rf": "да", "tr": "проверить", "method": "API", "prio": "средний"}, {"id": 12, "cat": "Агрегаторы: Россия", "name": "Changellenge >>", "site": "https://changellenge.com/", "what": "кейс-чемпионаты, карьерные программы, стажировки", "type": "кейсы / стажировки", "rf": "да", "tr": "проверить", "method": "HTML + Telegram", "prio": "высокий"}, {"id": 13, "cat": "Агрегаторы: Россия", "name": "Case-in", "site": "https://case-in.ru/", "what": "кейс-чемпионаты, стажировки", "type": "кейсы / стажировки", "rf": "да", "tr": "проверить", "method": "HTML + Telegram", "prio": "высокий"}, {"id": 14, "cat": "Агрегаторы: Россия", "name": "hh.ru (фильтр «стажировка»)", "site": "https://hh.ru/", "what": "стажировки, программы для студентов", "type": "стажировки", "rf": "да", "tr": "проверить", "method": "API", "prio": "высокий"}, {"id": 15, "cat": "Агрегаторы: Россия", "name": "Careerspace", "site": "https://careerspace.app/", "what": "стажировки, программы для студентов", "type": "стажировки", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 16, "cat": "Агрегаторы: Россия", "name": "Habr Карьера", "site": "https://career.habr.com/", "what": "стажировки в IT/финтехе", "type": "стажировки", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 17, "cat": "Агрегаторы: Россия", "name": "Россия — страна возможностей", "site": "https://rsv.ru/", "what": "конкурсы, школы, программы", "type": "школы / конкурсы", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 18, "cat": "Агрегаторы: Россия", "name": "Практика / Работа в России", "site": "https://trudvsem.ru/", "what": "госпрограммы практик и стажировок", "type": "стажировки", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 19, "cat": "Агрегаторы: Турция", "name": "Kariyer.net", "site": "https://www.kariyer.net/", "what": "стажировки и вакансии в Турции", "type": "стажировки", "rf": "проверить", "tr": "да", "method": "HTML / Playwright", "prio": "средний"}, {"id": 20, "cat": "Агрегаторы: Турция", "name": "Youthall", "site": "https://www.youthall.com/", "what": "программы для студентов, стажировки, кейсы в Турции", "type": "стажировки / кейсы", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 21, "cat": "Агрегаторы: Турция", "name": "TÜBİTAK", "site": "https://tubitak.gov.tr/", "what": "стипендии и программы для студентов", "type": "стипендии", "rf": "нет", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 22, "cat": "Агрегаторы: Турция", "name": "Минмолодёжи и спорта Турции (GSB)", "site": "https://gsb.gov.tr/", "what": "молодёжные программы и события", "type": "события", "rf": "нет", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 23, "cat": "Летние школы: международные", "name": "Wharton (Summer / Academy)", "site": "https://academy.wharton.upenn.edu/", "what": "corporate finance, valuation; финпомощь (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "высокий"}, {"id": 24, "cat": "Летние школы: международные", "name": "LSE Summer School", "site": "https://www.lse.ac.uk/study-at-lse/summer-schools", "what": "finance, accounting, economics, management; стипендии (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "высокий"}, {"id": 25, "cat": "Летние школы: международные", "name": "HEC Paris Summer School", "site": "https://www.hec.edu/en/executive-education/summer-programs", "what": "corporate finance, IB, fintech, sustainable finance (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "высокий"}, {"id": 26, "cat": "Летние школы: международные", "name": "Harvard Summer School", "site": "https://summer.harvard.edu/", "what": "finance, economics, management, data (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 27, "cat": "Летние школы: международные", "name": "Oxford Summer Courses", "site": "https://www.conted.ox.ac.uk/", "what": "economics, finance, business (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 28, "cat": "Летние школы: международные", "name": "Cambridge Summer Programmes", "site": "https://www.ice.cam.ac.uk/", "what": "economics, management, finance (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 29, "cat": "Летние школы: международные", "name": "Bocconi Summer School", "site": "https://www.unibocconi.eu/wps/wcm/connect/Bocconi/SitoPubblico_EN/Navigation+Tree/Home/Summer+School/", "what": "finance, economics, management, real estate (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 30, "cat": "Летние школы: международные", "name": "ESADE / IE / IESE", "site": "https://www.esade.edu/ ; https://www.ie.edu/ ; https://www.iese.edu/", "what": "business, finance, hospitality (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 31, "cat": "Летние школы: международные", "name": "Tsinghua / Fudan / Peking Summer", "site": "https://www.tsinghua.edu.cn/en/ ; https://www.fudan.edu.cn/en/ ; https://english.pku.edu.cn/", "what": "международные финансы, экономика, Азия (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 32, "cat": "Летние школы: международные", "name": "NUS / HKU / CUHK Summer", "site": "https://www.nus.edu.sg/ ; https://www.hku.hk/ ; https://www.cuhk.edu.hk/english/index.html", "what": "Азия, финансы, недвижимость (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 33, "cat": "Летние школы: международные", "name": "EHL / Glion / Les Roches", "site": "https://www.ehl.edu/ ; https://www.glion.edu/ ; https://www.lesroches.edu/", "what": "hospitality, luxury, real estate (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 34, "cat": "Летние школы: международные", "name": "MIT Professional / Sloan short programs", "site": "https://professional.mit.edu/ ; https://www.mit.edu/education/", "what": "finance, analytics, fintech (страницы programs, fees, scholarships, deadlines)", "type": "летняя школа", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 35, "cat": "Летние школы: Россия", "name": "Летние школы ВШЭ, МГУ, СПбГУ, ИТМО", "site": "https://www.hse.ru/ ; https://www.msu.ru/ ; https://spbu.ru/ ; https://itmo.ru/", "what": "страницы летних школ", "type": "летняя школа", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 36, "cat": "Летние школы: Россия", "name": "Сколково (летние школы, МШУ)", "site": "https://www.skolkovo.ru/ ; https://www.sk.ru/", "what": "летние школы, обмены, партнёры", "type": "летняя школа", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "высокий"}, {"id": 37, "cat": "Летние школы: Россия", "name": "Университет 20.35 / Сириус", "site": "https://2035.university/ ; https://sochisirius.ru/", "what": "программы и школы", "type": "летняя школа", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 38, "cat": "Летние школы: ОАЭ, СНГ, соседи", "name": "ADGM / DIFC / Khalifa University", "site": "https://www.adgm.com/ ; https://www.difc.ae/ ; https://www.ku.ac.ae/", "what": "программы и стажировки в ОАЭ", "type": "школы / стажировки", "rf": "проверить", "tr": "да", "method": "вручную / HTML", "prio": "средний"}, {"id": 39, "cat": "Летние школы: ОАЭ, СНГ, соседи", "name": "Nazarbayev University / Astana Hub", "site": "https://nu.edu.kz/ ; https://astanahub.com/", "what": "Казахстан: школы и события", "type": "школы / события", "rf": "да", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 40, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Yakov & Partners", "site": "https://www.yakovpartners.com/careers/", "what": "карьерная страница: стажировки, события", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 41, "cat": "Стажировки: консалтинг и IB (международные)", "name": "McKinsey", "site": "https://www.mckinsey.com/careers", "what": "internships, insight programs", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 42, "cat": "Стажировки: консалтинг и IB (международные)", "name": "BCG", "site": "https://www.bcg.com/careers", "what": "internships, ambassador programs", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 43, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Bain", "site": "https://www.bain.com/careers/", "what": "internships, Associate Consultant", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 44, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Goldman Sachs", "site": "https://www.goldmansachs.com/careers/", "what": "internships, insight programs", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 45, "cat": "Стажировки: консалтинг и IB (международные)", "name": "J.P. Morgan", "site": "https://careers.jpmorgan.com/", "what": "internships, pre-internship programs", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "высокий"}, {"id": 46, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Morgan Stanley", "site": "https://www.morganstanley.com/careers", "what": "internships, early insights", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "средний"}, {"id": 47, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Citi", "site": "https://jobs.citi.com/", "what": "internships, analyst programs", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "средний"}, {"id": 48, "cat": "Стажировки: консалтинг и IB (международные)", "name": "BNP Paribas / SocGen / Deutsche Bank / Barclays / UBS", "site": "https://careers.bnpparibas.com/ ; https://careers.societegenerale.com/ ; https://www.db.com/careers ; https://home.barclays/careers/ ; https://www.ubs.com/global/en/careers.html", "what": "internships, early careers", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "средний"}, {"id": 49, "cat": "Стажировки: консалтинг и IB (международные)", "name": "Rothschild / Lazard / Evercore / Centerview", "site": "https://www.rothschildandco.com/en/careers/ ; https://www.lazard.com/careers ; https://www.evercore.com/careers/ ; https://www.centerviewpartners.com/careers", "what": "boutique IB: internships", "type": "стажировка", "rf": "проверить (часто ограничено)", "tr": "да (виза/разрешение)", "method": "Playwright / вручную", "prio": "средний"}, {"id": 50, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Strategy Partners", "site": "https://www.strategy.ru/career/", "what": "карьера", "type": "стажировка", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "высокий"}, {"id": 51, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Kearney / ЦСР / «Кузьмин и партнёры»", "site": "https://www.kearney.com/careers ; https://www.csr.ru/ ; https://kuzminpartners.ru/", "what": "карьера", "type": "стажировка", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 52, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Сбер CIB / ВТБ Капитал / Альфа / Газпромбанк / Совкомбанк", "site": "https://www.sberbank.com/career ; https://www.vtb.ru/career/ ; https://alfabank.ru/career/ ; https://www.gazprombank.ru/career/ ; https://sovcombank.ru/career", "what": "студенческие программы", "type": "стажировка", "rf": "да", "tr": "проверить", "method": "HTML / Playwright", "prio": "высокий"}, {"id": 53, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Т-Банк / Т-Инвестиции", "site": "https://www.tbank.ru/career/ ; https://www.tbank.ru/invest/", "what": "стажировки, чемпионаты", "type": "стажировка / кейсы", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "высокий"}, {"id": 54, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Мосбиржа / Банк России", "site": "https://www.moex.com/ ; https://www.cbr.ru/career/", "what": "стажировки, олимпиады", "type": "стажировка / олимпиады", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 55, "cat": "Стажировки: консалтинг и финансы (Россия)", "name": "Яндекс / МТС / VK (стратегия, финтех)", "site": "https://yandex.ru/career/ ; https://career.mts.ru/ ; https://vk.company/career/", "what": "стажировки", "type": "стажировка", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 56, "cat": "Стажировки: недвижимость и hospitality", "name": "CBRE / JLL / Knight Frank / Colliers", "site": "https://www.cbre.com/careers ; https://www.jll.com/careers ; https://www.knightfrank.com/careers ; https://www.colliers.com/careers", "what": "программы для студентов", "type": "стажировка", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 57, "cat": "Стажировки: недвижимость и hospitality", "name": "Девелоперы: ПИК, Самолёт, Донстрой, Эталон", "site": "https://www.pik.ru/career ; https://samolyot.ru/career ; https://www.donstroi.ru/career ; https://www.etallc.ru/career", "what": "стажировки, кейсы", "type": "стажировка / кейсы", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 58, "cat": "Стажировки: недвижимость и hospitality", "name": "Отельные сети (Radisson, Azimut и др.)", "site": "https://careers.radissonhotels.com/ ; https://azimut-hotels.com/career", "what": "management trainee", "type": "стажировка", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 59, "cat": "Стажировки: Турция", "name": "Big4 и офисы McKinsey/BCG/Bain в Стамбуле", "site": "https://www.mckinsey.com/careers ; https://www.bcg.com/careers ; https://www.bain.com/careers/ ; https://www.ey.com/en_gl/careers ; https://www.kpmg.com/careers ; https://www.pwc.com/gx/en/careers.html ; https://www2.deloitte.com/global/en/careers.html", "what": "internship programs", "type": "стажировка", "rf": "нет", "tr": "да", "method": "Playwright / HTML", "prio": "высокий"}, {"id": 60, "cat": "Стажировки: Турция", "name": "İş Bankası / Garanti BBVA / Akbank", "site": "https://www.isbank.com.tr/en ; https://www.garantibbva.com.tr/en ; https://www.akbank.com/en", "what": "студенческие программы", "type": "стажировка", "rf": "нет", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 61, "cat": "Стажировки: Турция", "name": "Koç / Sabancı Holding", "site": "https://www.koc.com.tr/en-us ; https://www.sabanci.com/en", "what": "стажировки", "type": "стажировка", "rf": "нет", "tr": "да", "method": "HTML", "prio": "средний"}, {"id": 62, "cat": "Стажировки: Турция", "name": "Borsa Istanbul / Istanbul Finance Center", "site": "https://www.borsaistanbul.com/en/ ; https://ifcistanbul.com/en", "what": "стажировки, события", "type": "стажировка / события", "rf": "нет", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 63, "cat": "Международные организации", "name": "UN Careers / Internships", "site": "https://careers.un.org/", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "высокий"}, {"id": 64, "cat": "Международные организации", "name": "World Bank", "site": "https://www.worldbank.org/en/about/careers", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "высокий"}, {"id": 65, "cat": "Международные организации", "name": "IMF", "site": "https://www.imf.org/en/About/Careers", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "высокий"}, {"id": 66, "cat": "Международные организации", "name": "OECD", "site": "https://www.oecd.org/careers/", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "средний"}, {"id": 67, "cat": "Международные организации", "name": "EBRD", "site": "https://www.ebrd.com/careers.html", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "средний"}, {"id": 68, "cat": "Международные организации", "name": "EIB", "site": "https://www.eib.org/en/careers/index.htm", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "средний"}, {"id": 69, "cat": "Международные организации", "name": "WTO", "site": "https://www.wto.org/english/thewto_e/vacan_e/vacan_e.htm", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "низкий"}, {"id": 70, "cat": "Международные организации", "name": "UNICEF / UNDP / UNESCO", "site": "https://careers.unicef.org/ ; https://jobs.undp.org/ ; https://careers.unesco.org/", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "низкий"}, {"id": 71, "cat": "Международные организации", "name": "CERN / DESY / EMBL", "site": "https://careers.cern/ ; https://www.desy.de/career/index_eng.html ; https://www.embl.org/about/info/course-and-conference-office/", "what": "internship, traineeship (фильтр student/undergraduate)", "type": "стажировка", "rf": "проверить", "tr": "да (виза)", "method": "HTML", "prio": "низкий"}, {"id": 72, "cat": "Кейс-чемпионаты (дополнительно)", "name": "CFA Research Challenge", "site": "https://www.cfainstitute.org/programs/cfa-research-challenge", "what": "финансовый анализ компаний", "type": "кейс", "rf": "проверить", "tr": "проверить", "method": "вручную", "prio": "высокий"}, {"id": 73, "cat": "Кейс-чемпионаты (дополнительно)", "name": "Moscow Case Club", "site": "https://t.me/s/moscowcaseclub", "what": "кейсы", "type": "кейс", "rf": "да", "tr": "проверить", "method": "Telegram", "prio": "средний"}, {"id": 74, "cat": "Кейс-чемпионаты (дополнительно)", "name": "Чемпионаты Сбера, Т-Банка, Яндекса", "site": "https://www.sberbank.com/career ; https://www.tbank.ru/career/ ; https://yandex.ru/career/", "what": "кейсы", "type": "кейс", "rf": "да", "tr": "проверить", "method": "HTML / Telegram", "prio": "высокий"}, {"id": 75, "cat": "Кейс-чемпионаты (дополнительно)", "name": "Олимпиады Банка России и Финансового университета", "site": "https://www.cbr.ru/career/ ; https://fa.ru/", "what": "олимпиады", "type": "кейс / олимпиада", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 76, "cat": "Кейс-чемпионаты (дополнительно)", "name": "Hult Prize", "site": "https://www.hultprize.org/", "what": "предпринимательские кейсы", "type": "кейс", "rf": "проверить", "tr": "да", "method": "HTML", "prio": "низкий"}, {"id": 77, "cat": "Конференции и саммиты (международные)", "name": "One Young World", "site": "https://www.oneyoungworld.com/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "высокий"}, {"id": 78, "cat": "Конференции и саммиты (международные)", "name": "St. Gallen Symposium", "site": "https://www.symposium.org/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "высокий"}, {"id": 79, "cat": "Конференции и саммиты (международные)", "name": "World Economic Forum (Davos, youth)", "site": "https://www.weforum.org/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 80, "cat": "Конференции и саммиты (международные)", "name": "IMF / World Bank Meetings (youth events)", "site": "https://www.imf.org/en/News/Seminars ; https://www.worldbank.org/en/events", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 81, "cat": "Конференции и саммиты (международные)", "name": "FT / Bloomberg events", "site": "https://events.ft.com/ ; https://www.bloomberg.com/professional/events/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 82, "cat": "Конференции и саммиты (международные)", "name": "Milken Institute Global Conference", "site": "https://events.milkeninstitute.org/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 83, "cat": "Конференции и саммиты (международные)", "name": "Web Summit / Slush / TechCrunch Disrupt", "site": "https://websummit.com/ ; https://www.slush.org/ ; https://techcrunch.com/events/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "низкий"}, {"id": 84, "cat": "Конференции и саммиты (международные)", "name": "MIPIM / Expo Real / Cityscape", "site": "https://www.mipim.com/ ; https://www.exporeal.net/ ; https://www.cityscapeglobal.com/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "средний"}, {"id": 85, "cat": "Конференции и саммиты (международные)", "name": "ILTM / WTTC / hospitality summits", "site": "https://www.iltm.com/ ; https://wttc.org/", "what": "даты, программа, студенческие/волонтёрские места", "type": "конференция", "rf": "проверить", "tr": "да", "method": "HTML / вручную", "prio": "низкий"}, {"id": 86, "cat": "Конференции и форумы (Россия)", "name": "ПМЭФ / ВЭФ / Открытые инновации", "site": "https://forumspb.com/ ; https://forumvostok.ru/ ; https://forinn.com/", "what": "студенческие и волонтёрские программы", "type": "форум", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 87, "cat": "Конференции и форумы (Россия)", "name": "Финопт / Московский финансовый форум", "site": "https://finopolis.ru/ ; https://mff.minfin.gov.ru/", "what": "программа, регистрация", "type": "форум", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "средний"}, {"id": 88, "cat": "Конференции и форумы (Россия)", "name": "Российская неделя недвижимости / Урбанистический форум", "site": "https://rnn.congress.ru/ ; https://urbanforum.ru/", "what": "программа", "type": "форум", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 89, "cat": "Конференции и форумы (Россия)", "name": "Skolkovo Startup Village", "site": "https://startupvillage.ru/", "what": "события", "type": "форум", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 90, "cat": "Конференции и форумы (Россия)", "name": "РСПП / Деловая Россия (ESG)", "site": "https://rspp.ru/ ; https://delovayarossiya.org/", "what": "ESG-события", "type": "форум", "rf": "да", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 91, "cat": "Конференции и форумы (Россия)", "name": "ESG: PRI, CFA Institute, ACCA", "site": "https://www.unpri.org/ ; https://www.cfainstitute.org/ ; https://www.accaglobal.com/", "what": "студенческие программы", "type": "события", "rf": "проверить", "tr": "проверить", "method": "HTML", "prio": "низкий"}, {"id": 92, "cat": "МФТИ и Сколково (внутренние)", "name": "МФТИ: международные программы и мобильность", "site": "https://mipt.ru/education/international/", "what": "mobility grants, летние школы, обмены", "type": "школы / гранты", "rf": "да", "tr": "проверить", "method": "HTML + рассылки", "prio": "высокий"}, {"id": 93, "cat": "МФТИ и Сколково (внутренние)", "name": "МФТИ: карьерный центр", "site": "https://mipt.ru/career/", "what": "вакансии, стажировки", "type": "стажировка", "rf": "да", "tr": "проверить", "method": "HTML + Telegram", "prio": "высокий"}, {"id": 94, "cat": "МФТИ и Сколково (внутренние)", "name": "МШУ Сколково: international office", "site": "https://www.skolkovo.ru/", "what": "обмены, партнёрские вузы, школы", "type": "школы / обмены", "rf": "да", "tr": "проверить", "method": "HTML + рассылки", "prio": "высокий"}, {"id": 95, "cat": "МФТИ и Сколково (внутренние)", "name": "Сколково: карьерный центр и корпоративные партнёры", "site": "https://www.sk.ru/", "what": "события, конкурсы, партнёры", "type": "стажировка / события", "rf": "да", "tr": "проверить", "method": "HTML + рассылки", "prio": "высокий"}, {"id": 96, "cat": "МФТИ и Сколково (внутренние)", "name": "Telegram и рассылки МФТИ / Физтех-школы / студсовет", "site": "https://t.me/mipt_official", "what": "гранты, mobility, стажировки", "type": "все типы", "rf": "да", "tr": "проверить", "method": "Telegram (t.me/s/)", "prio": "высокий"}, {"id": 97, "cat": "МФТИ и Сколково (внутренние)", "name": "Telegram-каналы Changellenge, Case-in, «стажировки в консалтинге и IB»", "site": "https://t.me/s/changellenge ; https://t.me/s/case_in", "what": "анонсы, дедлайны", "type": "стажировка / кейсы", "rf": "да", "tr": "проверить", "method": "Telegram (t.me/s/)", "prio": "высокий"}, {"id": 98, "cat": "Финансирование и стипендии", "name": "Wharton financial aid / Warburg Pincus Fellowship", "site": "https://academy.wharton.upenn.edu/admissions/financial-aid/", "what": "условия, дедлайны", "type": "стипендия", "rf": "проверить", "tr": "да", "method": "вручную", "prio": "высокий"}, {"id": 99, "cat": "Финансирование и стипендии", "name": "LSE Summer School scholarships", "site": "https://www.lse.ac.uk/study-at-lse/summer-schools/Fees-and-scholarships", "what": "условия, дедлайны", "type": "стипендия", "rf": "проверить", "tr": "да", "method": "вручную", "prio": "высокий"}, {"id": 100, "cat": "Финансирование и стипендии", "name": "МФТИ mobility grants / поддержка МШУ Сколково", "site": "https://mipt.ru/education/international/", "what": "внутренние гранты", "type": "грант", "rf": "да", "tr": "проверить", "method": "вручную + рассылки", "prio": "высокий"}, {"id": 101, "cat": "Финансирование и стипендии", "name": "Erasmus+ Traineeships", "site": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/traineeships", "what": "финансирование стажировок", "type": "грант", "rf": "нет (как правило)", "tr": "частично", "method": "HTML", "prio": "средний"}, {"id": 102, "cat": "Финансирование и стипендии", "name": "Фонды для турецких студентов за рубежом", "site": "https://www.turkiyeburslari.gov.tr/ ; https://www.daad.de/en/", "what": "стипендии, гранты", "type": "стипендия", "rf": "нет", "tr": "да", "method": "вручную", "prio": "средний"}];
-const SEC=[["intern","Стажировки"],["school","Летние школы"],["summit","Саммиты и конференции"],["case","Кейс-чемпионаты"],["src","Каталог источников"]];
-const $=id=>document.getElementById(id);let cur="intern",F={};
-const ok=v=>!/^нет/.test(v);
-const uniq=(a,k)=>[...new Set(a.map(x=>x[k]))];
-function opts(label,vals){return '<option value="">'+label+'</option>'+vals.map(v=>'<option>'+v+'</option>').join('')}
-function nav(){$("nav").innerHTML=SEC.map(s=>'<button data-s="'+s[0]+'" class="'+(s[0]===cur?"on":"")+'">'+s[1]+'</button>').join('')}
-$("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;cur=b.dataset.s;F={};bar();nav();draw();try{history.replaceState(null,"","#"+cur)}catch(x){}};
-function bar(){const D=cur==="src"?SRC:EV.filter(e=>e.sec===cur);
- const f=cur==="src"?[["q","text","Поиск…"],["cat","sel","Все категории",uniq(D,"cat")],["prio","sel","Любой приоритет",["высокий","средний","низкий"]],["pass","pass"]]:
- [["q","text","Поиск…"],["country","sel","Все страны",uniq(D,"country")],["org","sel","Все организации",uniq(D,"org")],["fmt","sel","Любой формат",uniq(D,"fmt")],["pass","pass"]];
- $("bar").innerHTML=f.map(x=>x[1]==="text"?'<input data-k="q" placeholder="'+x[2]+'">':x[1]==="pass"?'<select data-k="pass"><option value="">Любой паспорт</option><option value="rf">Доступно РФ</option><option value="tr">Доступно ТР</option></select>':'<select data-k="'+x[0]+'">'+opts(x[2],x[3])+'</select>').join('')}
-$("bar").oninput=e=>{F[e.target.dataset.k]=e.target.value;draw()};
-const link=s=>String(s).split(/\s*;\s*/).map(u=>/^https?:\/\//.test(u)?'<a href="'+u+'" target="_blank" rel="noopener">'+u.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,"")+'</a>':u).join("<br>");
-function pass(d){return !F.pass||(F.pass==="rf"?ok(d.rf):ok(d.tr))}
-function draw(){const q=(F.q||"").toLowerCase();let h;
- if(cur==="src"){const L=SRC.filter(d=>(!q||(d.name+d.what+d.cat).toLowerCase().includes(q))&&(!F.cat||d.cat===F.cat)&&(!F.prio||d.prio===F.prio)&&pass(d));
-  $("cnt").textContent="Найдено: "+L.length+" из "+SRC.length;
-  h=L.map(d=>'<div class="card"><div class="top"><div><div class="nm">'+d.name+'</div><div class="org">'+d.cat+'</div></div><span class="b wn">'+d.prio+'</span></div><p>'+d.what+'</p><div class="tags"><span class="t">'+d.type+'</span><span class="t">РФ: '+d.rf+'</span><span class="t">ТР: '+d.tr+'</span><span class="t">'+d.method+'</span></div><p>'+link(d.site)+'</p></div>').join('')}
- else{const L=EV.filter(d=>d.sec===cur&&(!q||(d.title+d.org+d.desc+d.place).toLowerCase().includes(q))&&(!F.country||d.country===F.country)&&(!F.org||d.org===F.org)&&(!F.fmt||d.fmt===F.fmt)&&pass(d));
-  $("cnt").textContent="Найдено: "+L.length;
-  h=L.map(d=>'<div class="card"><div class="top"><div><div class="nm">'+d.title+'</div><div class="org">'+d.org+'</div></div><span class="b '+(d.ok?"ok":"wn")+'">'+(d.ok?"проверено":"уточнить")+'</span></div><dl><dt>Место</dt><dd>'+d.country+', '+d.place+'</dd><dt>Формат</dt><dd>'+d.fmt+'</dd><dt>Даты</dt><dd>'+d.dates+'</dd><dt>Дедлайн</dt><dd>'+d.dl+'</dd><dt>Стоимость</dt><dd>'+d.cost+'</dd><dt>Условия</dt><dd>'+d.cond+'</dd></dl><p>'+d.desc+'</p><div class="tags"><span class="t">РФ: '+d.rf+'</span><span class="t">ТР: '+d.tr+'</span></div><p><a href="'+d.url+'" target="_blank" rel="noopener">Официальный сайт</a></p></div>').join('')}
- $("list").innerHTML=h||'<p class="cnt">Ничего не найдено.</p>'}
-const hs=location.hash.slice(1);if(SEC.some(s=>s[0]===hs))cur=hs;
-fetch("events.json").then(r=>r.json()).then(j=>{EV=j.events;$("sub").textContent+=" Обновлено: "+j.updated+"."}).catch(()=>{$("sub").textContent+=" (не удалось загрузить events.json)"}).finally(()=>{nav();bar();draw()});
-</script></body></html>
+(() => {
+const SECS = {
+  conf:{name:"Конференции", one:"Конференция", lede:"Форумы, саммиты и конференции: слушать сильных людей и знакомиться."},
+  grant:{name:"Стипендии и гранты", one:"Стипендия", lede:"Деньги на учёбу, поездки и проекты — в России и за рубежом."},
+  case:{name:"Кейс-чемпионаты", one:"Кейс-чемпионат", lede:"Решать реальные задачи компаний, попадать на радары рекрутеров."},
+  intern:{name:"Стажировки", one:"Стажировка", lede:"Оплачиваемые стажировки, spring weeks и insight-программы."},
+  school:{name:"Летние школы", one:"Летняя школа", lede:"Интенсивы в сильных университетах и бизнес-школах."},
+  other:{name:"Прочее", one:"Прочее", lede:"Хакатоны, олимпиады, конкурсы и всё, что не вписалось в рубрики."}
+};
+const TAGS = {fin:"Финансы",build:"Строительство",lead:"Лидерство",consult:"Консалтинг",pm:"Продукт и проекты",it:"IT"};
+const STATUSES = [["want","Хочу"],["prep","Готовлю заявку"],["sent","Подала"],["done","Результат"]];
+const MONTHS = ["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"];
+const MGEN = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+const WD = ["вс","пн","вт","ср","чт","пт","сб"];
+
+/* storage that survives sandboxed iframes */
+const mem = {};
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return k in mem ? mem[k] : d; } },
+  set(k, v){ mem[k] = v; try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+let plan = store.get("radar.plan", {});     // id -> status
+let hidden = store.get("radar.hidden", {}); // id -> 1
+
+const S = { view:"home", sec:null, region:"all", q:"", tags:[], fmt:"all", money:"all", sort:"rel", withDl:false, shown:24 };
+let EV = [], META = {}, NEWS = null, NS = { tag:"", more:false };
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const blank = v => !v || /^уточнить/i.test(v);
+const TODAY = (() => { const d = new Date(); d.setHours(0,0,0,0); return d; })();
+const parseD = s => { if(!s) return null; const [y,m,d] = s.split("-").map(Number); const x = new Date(y, m-1, d); return isNaN(x) ? null : x; };
+const daysTo = s => { const d = parseD(s); return d ? Math.round((d - TODAY) / 864e5) : null; };
+const fmtD = s => { const d = parseD(s); return d ? `${d.getDate()} ${MGEN[d.getMonth()]}${d.getFullYear() !== TODAY.getFullYear() ? " " + d.getFullYear() : ""}` : ""; };
+const plural = (n, a, b, c) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? a : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? b : c); };
+const dlText = e => e.dl_iso ? fmtD(e.dl_iso) : (blank(e.dl) ? "" : e.dl);
+const dlLabel = e => { const t = dlText(e); return !t ? "" : (e.dl_iso || /^\d/.test(t)) ? "до " + t : t.charAt(0).toUpperCase() + t.slice(1); };
+const isNew = e => e.first_seen && (TODAY - parseD(e.first_seen)) / 864e5 <= 7;
+const funded = e => e.funded || /^(бесплат|оплачива)/i.test(e.cost || "");
+const online = e => /онлайн|online|дистанц|remote|удал/i.test((e.fmt||"") + " " + (e.place||""));
+
+function base(){
+  return EV.filter(e => !hidden[e.id] && (S.region === "all" || e.region === S.region));
+}
+function filtered(){
+  const q = S.q.trim().toLowerCase();
+  let list = base().filter(e => (!S.sec || e.sec === S.sec)
+    && (!q || [e.title,e.org,e.desc,e.place,e.cond].join(" ").toLowerCase().includes(q))
+    && (!S.tags.length || S.tags.some(t => (e.tags||[]).includes(t)))
+    && (S.fmt === "all" || (S.fmt === "online" ? online(e) : !online(e)))
+    && (S.money === "all" || (S.money === "free" ? funded(e) : e.funded))
+    && (!S.withDl || e.dl_iso));
+  const by = {
+    rel:(a,b) => b.rel - a.rel || (a.dl_iso||"9").localeCompare(b.dl_iso||"9"),
+    dl:(a,b) => (a.dl_iso||"9999").localeCompare(b.dl_iso||"9999") || b.rel - a.rel,
+    new:(a,b) => (b.first_seen||"").localeCompare(a.first_seen||"") || b.rel - a.rel
+  }[S.sort];
+  return list.sort(by);
+}
+
+/* ---------- small renderers ---------- */
+const kick = e => `<span class="kick c-${e.sec}"><span class="sq"></span>${SECS[e.sec]?.one || "Возможность"} · ${e.region === "ru" ? "Россия" : "Мир"}</span>`;
+const matchBar = e => `<span class="match" title="Совпадение с твоими интересами">${e.rel}%<span class="bar"><i style="width:${e.rel}%"></i></span></span>`;
+function chips(e){
+  const out = [];
+  const d = daysTo(e.dl_iso);
+  if (d !== null && d <= 14) out.push(`<span class="chip hot">${d === 0 ? "дедлайн сегодня" : `${d} ${plural(d,"день","дня","дней")} до дедлайна`}</span>`);
+  if (isNew(e)) out.push(`<span class="chip">новое</span>`);
+  if (e.funded) out.push(`<span class="chip fund">с финансированием</span>`);
+  if (e.source === "подборка" || e.ok) out.push(`<span class="chip">проверено</span>`);
+  (e.tags||[]).slice(0,3).forEach(t => out.push(`<span class="chip">${TAGS[t]||t}</span>`));
+  return out.join("");
+}
+const saveBtn = e => `<button class="btn ${plan[e.id] ? "saved" : ""}" data-save="${e.id}" aria-pressed="${!!plan[e.id]}">${plan[e.id] ? "В плане" : "В план"}</button>`;
+
+function card(e){
+  const dl = dlText(e), d = daysTo(e.dl_iso);
+  return `<article class="card">
+    <div class="top">${kick(e)}${matchBar(e)}</div>
+    <h3 data-open="${e.id}" tabindex="0" role="button">${esc(e.title)}</h3>
+    <div class="org">${esc(e.org)}</div>
+    ${blank(e.desc) ? "" : `<p class="d">${esc(e.desc)}</p>`}
+    <div class="facts">
+      <div><b>Дедлайн</b><span class="${d !== null && d <= 14 ? "dlsoon" : ""}">${esc(dl || "уточнить")}</span></div>
+      <div><b>Когда</b><span>${esc(blank(e.dates) ? (fmtD(e.start_iso) || "уточнить") : e.dates)}</span></div>
+      <div><b>Где</b><span>${esc(blank(e.place) ? (blank(e.fmt) ? "уточнить" : e.fmt) : e.place)}</span></div>
+    </div>
+    <div class="chips">${chips(e)}</div>
+    <div class="acts">${saveBtn(e)}<button class="btn ghost" data-open="${e.id}">Подробнее</button><span class="grow"></span><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener">Сайт ↗</a></div>
+  </article>`;
+}
+const story = e => `<button class="story" data-open="${e.id}">${kick(e)}<h3>${esc(e.title)}</h3><p>${esc(blank(e.desc) ? e.org : e.desc).slice(0,150)}${(e.desc||"").length>150?"…":""}</p><div class="foot">${matchBar(e)}${dlText(e) ? `<span class="chip">${esc(dlLabel(e))}</span>` : ""}</div></button>`;
+const row = e => `<button class="row" data-open="${e.id}"><h3>${esc(e.title)}</h3><div class="sub">${esc(e.org)}${dlText(e) ? " · " + esc(dlLabel(e)) : ""}</div></button>`;
+const rings = `<svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="44"/><circle cx="100" cy="100" r="18"/><path d="M100 100 L196 100"/><path d="M100 100 L168 32"/></g></svg>`;
+
+/* ---------- views ---------- */
+function viewHome(){
+  const all = base();
+  if (!all.length) return emptyState("Пока пусто", "Карточки появятся после первого запуска парсера.");
+  const lead = [...all].sort((a,b) => (b.top?1:0)-(a.top?1:0) || b.rel - a.rel || (a.dl_iso||"9").localeCompare(b.dl_iso||"9"))[0];
+  const sides = all.filter(e => e !== lead).sort((a,b) => b.rel - a.rel).slice(0,3);
+  const hot = all.filter(e => { const d = daysTo(e.dl_iso); return d !== null && d >= 0 && d <= 21 && (e.rel || 0) >= 50; }).sort((a,b) => a.dl_iso.localeCompare(b.dl_iso)).slice(0,10);
+  const used = new Set([lead.id, ...sides.map(e => e.id)]);
+  let fresh = all.filter(e => isNew(e) && !used.has(e.id)).sort((a,b) => b.rel - a.rel);
+  if (fresh.length > all.length * 0.6) fresh = [];  // первый запуск: «новым» считается всё, блок не нужен
+  const rub = Object.keys(SECS).map(k => {
+    const items = all.filter(e => e.sec === k && !used.has(e.id)).sort((a,b) => b.rel - a.rel);
+    const n = all.filter(e => e.sec === k).length;
+    if (!n) return "";
+    return `<div class="rubric c-${k}"><h3 class="rt">${SECS[k].name}<span>${n}</span></h3>${items.slice(0,4).map(row).join("")}<button class="more all" data-go="${k}">Вся рубрика →</button></div>`;
+  }).join("");
+  const dl = dlText(lead);
+  return `
+  <section aria-labelledby="h-cover">
+    <h2 id="h-cover" class="sr">Главное</h2>
+    <div class="cover">
+      <button class="lead c-${lead.sec}" data-open="${lead.id}">${rings}
+        <div>${kick(lead)}<div class="big">${esc(lead.title)}</div><p>${esc(lead.desc || lead.org)}</p></div>
+        <div class="meta">
+          <div><b>Организатор</b>${esc(lead.org)}</div>
+          ${dl ? `<div><b>Дедлайн</b>${esc(dl)}</div>` : ""}
+          ${!blank(lead.dates) ? `<div><b>Когда</b>${esc(lead.dates)}</div>` : ""}
+          <div><b>Совпадение</b>${lead.rel}%</div>
+        </div>
+      </button>
+      <div class="side">${sides.map(story).join("")}</div>
+    </div>
+  </section>
+  <section class="hot" aria-labelledby="h-hot" style="margin:0 calc(-1 * var(--pad));padding-left:var(--pad);padding-right:var(--pad)">
+    <div class="sec-h"><h2 id="h-hot">Горят <em>дедлайны</em></h2><button class="more" data-view="calendar" style="color:var(--paper)">Календарь →</button></div>
+    ${hot.length ? `<div class="ticker">${hot.map(e => { const d = daysTo(e.dl_iso); return `<button class="tick c-${e.sec}" data-open="${e.id}"><div class="num">${d}<small>${plural(d,"день","дня","дней")}</small></div><h3>${esc(e.title)}</h3><div class="mono">${SECS[e.sec].one} · до ${fmtD(e.dl_iso)}</div></button>`; }).join("")}</div>`
+      : `<p class="empty-hot">В ближайшие три недели дедлайнов нет — можно спокойно готовиться к следующим.</p>`}
+  </section>
+  ${viewNews()}
+  ${fresh.length ? `<section aria-labelledby="h-new"><div class="sec-h"><h2 id="h-new">Новое <em>за неделю</em></h2><button class="more" data-go="all" data-sort="new">Все новые →</button></div><div class="grid">${fresh.slice(0,4).map(card).join("")}</div></section>` : ""}
+  <section aria-labelledby="h-rub"><div class="sec-h"><h2 id="h-rub">По <em>рубрикам</em></h2><button class="more" data-go="all">Весь каталог →</button></div><div class="rubrics">${rub}</div></section>`;
+}
+
+/* ---------- деловая лента ---------- */
+function nTime(iso){
+  const d = new Date(iso); if (isNaN(d)) return "";
+  const hm = d.toLocaleTimeString("ru-RU", {hour:"2-digit", minute:"2-digit"});
+  const day = Math.round((new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate()) - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / 864e5);
+  return day <= 0 ? hm : day === 1 ? "вчера, " + hm : `${d.getDate()} ${MGEN[d.getMonth()].slice(0,3)}, ${hm}`;
+}
+function newsItem(x, first){
+  const tags = (x.tags || []).filter(k => TAGS[k]).slice(0,2).map(k => `<span class="nt">${TAGS[k]}</span>`).join("");
+  return `<a class="ni${first ? " first" : ""}" href="${esc(x.url)}" target="_blank" rel="noopener"><div class="nm"><span>${nTime(x.ts)}</span><b>${esc(x.src)}</b>${tags}</div><h4>${esc(x.t)}</h4>${first && x.desc ? `<p>${esc(x.desc)}</p>` : ""}</a>`;
+}
+function viewNews(){
+  if (!NEWS || !(NEWS.items || []).length) return "";
+  let items = NEWS.items.filter(x => !NS.tag || (x.tags || []).includes(NS.tag));
+  const n = NS.more ? 12 : 5;
+  const col = (reg, name) => { const l = items.filter(x => x.region === reg); return `<div class="ncol"><h3 class="nh"><span>${name}</span><span>${l.length}</span></h3>${l.length ? l.slice(0, n).map((x,i) => newsItem(x, i === 0)).join("") : `<p class="sub" style="padding:12px 0;color:var(--mute)">По этой теме новостей пока нет.</p>`}</div>`; };
+  const cols = S.region === "ru" ? [col("ru","В России")] : S.region === "intl" ? [col("intl","В мире")] : [col("ru","В России"), col("intl","В мире")];
+  const used = new Set(NEWS.items.flatMap(x => x.tags || []));
+  const chips = [`<button class="tog" data-ntag="" aria-pressed="${!NS.tag}">Все темы</button>`, ...Object.entries(TAGS).filter(([k]) => used.has(k)).map(([k,v]) => `<button class="tog" data-ntag="${k}" aria-pressed="${NS.tag===k}">${v}</button>`)].join("");
+  const total = S.region === "all" ? items.length : items.filter(x => x.region === S.region).length;
+  return `<section class="news" aria-labelledby="h-news">
+    <div class="sec-h"><h2 id="h-news">Деловая <em>лента</em></h2><span class="mono" style="color:var(--mute)">за последние дни · ${NEWS.sources || ""} изданий</span></div>
+    <div class="ntags" role="group" aria-label="Тема новостей">${chips}</div>
+    <div class="ncols${cols.length === 1 ? " one" : ""}">${cols.join("")}</div>
+    <div class="nfoot"><span>Заголовки ведут на сайты изданий: Ведомости, Коммерсантъ, The Bell, BBC, The Economist и другие.</span>${total > n * cols.length || NS.more ? `<button class="more" data-nmore="1">${NS.more ? "Свернуть" : "Больше новостей"} →</button>` : ""}</div>
+  </section>`;
+}
+document.addEventListener("click", ev => {
+  const t = ev.target.closest("[data-ntag],[data-nmore]"); if (!t) return;
+  if (t.dataset.ntag !== undefined) NS.tag = t.dataset.ntag; else NS.more = !NS.more;
+  const sec = document.querySelector(".news"); if (sec) sec.outerHTML = viewNews();
+});
+
+/* подсказка, что вкладки листаются вбок */
+function tabsHint(){ const t = document.getElementById("tabs"); if (!t) return;
+  t.classList.toggle("clip", t.scrollWidth > t.clientWidth + 4);
+  t.classList.toggle("end", t.scrollLeft + t.clientWidth >= t.scrollWidth - 4); }
+addEventListener("resize", tabsHint);
+document.addEventListener("scroll", e => { if (e.target && e.target.id === "tabs") tabsHint(); }, true);
+setInterval(tabsHint, 1500);
+
+function viewCatalog(){
+  const list = filtered();
+  const sec = S.sec ? SECS[S.sec] : null;
+  const tagBtns = Object.entries(TAGS).map(([k,v]) => `<button class="tog" data-tag="${k}" aria-pressed="${S.tags.includes(k)}">${v}</button>`).join("");
+  const secBtns = [`<button class="tog" data-sec="" aria-pressed="${!S.sec}">Все рубрики</button>`, ...Object.entries(SECS).map(([k,v]) => `<button class="tog c-${k}" data-sec="${k}" aria-pressed="${S.sec===k}"><span class="sw"></span>${v.name}</button>`)].join("");
+  return `<section>
+    <div class="cat-head"><div><span class="kick ${S.sec ? "c-" + S.sec : ""}">${S.sec ? '<span class="sq"></span>Рубрика' : "Каталог"}</span><h2>${sec ? sec.name : "Все возможности"}</h2><p>${sec ? sec.lede : "Всё, что сейчас открыто или скоро откроется. Фильтруй по интересам, формату и деньгам."}</p></div></div>
+    <div class="filters" role="search">
+      <div class="frow"><label class="sr" for="q">Поиск</label><input class="search" id="q" type="search" placeholder="Поиск: Goldman, кейс, Лондон, финтех…" value="${esc(S.q)}">
+        <label class="sr" for="sort">Сортировка</label><select class="sel" id="sort"><option value="rel" ${S.sort==="rel"?"selected":""}>Сначала подходящие</option><option value="dl" ${S.sort==="dl"?"selected":""}>Ближайший дедлайн</option><option value="new" ${S.sort==="new"?"selected":""}>Сначала новые</option></select></div>
+      <div class="frow"><span class="lab">Рубрика</span>${secBtns}</div>
+      <div class="frow"><span class="lab">Интересы</span>${tagBtns}</div>
+      <div class="frow"><span class="lab">Условия</span>
+        <button class="tog" data-fmt="online" aria-pressed="${S.fmt==="online"}">Онлайн</button>
+        <button class="tog" data-fmt="offline" aria-pressed="${S.fmt==="offline"}">Очно</button>
+        <button class="tog" data-money="free" aria-pressed="${S.money==="free"}">Бесплатно или оплачивается</button>
+        <button class="tog" data-money="funded" aria-pressed="${S.money==="funded"}">С финансированием</button>
+        <button class="tog" data-dl="1" aria-pressed="${S.withDl}">Только с датой дедлайна</button>
+      </div>
+    </div>
+    <p class="count" aria-live="polite">${list.length} ${plural(list.length,"возможность","возможности","возможностей")}</p>
+    ${list.length ? `<div class="grid">${list.slice(0,S.shown).map(card).join("")}</div>${list.length > S.shown ? `<div class="load-more"><button class="btn solid" id="moreBtn">Показать ещё ${Math.min(24, list.length - S.shown)}</button></div>` : ""}`
+      : emptyState("Ничего не нашлось", "Сними часть фильтров или поменяй запрос.", `<button class="btn" id="resetF">Сбросить фильтры</button>`)}
+  </section>`;
+}
+
+function viewPlan(){
+  const ids = Object.keys(plan);
+  const items = EV.filter(e => plan[e.id]);
+  const cols = STATUSES.map(([k,label]) => {
+    const it = items.filter(e => plan[e.id] === k).sort((a,b) => (a.dl_iso||"9").localeCompare(b.dl_iso||"9"));
+    return `<div class="col"><h3>${label}<span>${it.length}</span></h3>${it.length ? it.map(e => `<div class="mini"><h4 data-open="${e.id}" tabindex="0" role="button">${esc(e.title)}</h4><div class="sub">${SECS[e.sec].one}${dlText(e) ? " · " + esc(dlLabel(e)) : ""}</div><label class="sr" for="st-${e.id}">Статус</label><select id="st-${e.id}" data-status="${e.id}">${STATUSES.map(([s,l]) => `<option value="${s}" ${s===k?"selected":""}>${l}</option>`).join("")}<option value="">Убрать из плана</option></select></div>`).join("") : `<p class="hint">${k==="want" ? "Нажимай «В план» на карточках — они появятся здесь." : "Пусто"}</p>`}</div>`;
+  }).join("");
+  const missing = ids.length - items.length;
+  return `<section><div class="cat-head"><div><span class="kick">Личное</span><h2>Мой план</h2><p>Отмечай, что хочешь подать, и двигай карточки по статусам. Всё хранится в этом браузере.</p></div>
+    <div>${items.some(e => e.dl_iso) ? `<button class="btn solid" id="icsPlan">Все дедлайны плана в календарь (.ics)</button>` : ""}</div></div>
+    <div class="board">${cols}</div>${missing > 0 ? `<p class="note" style="margin-top:14px">${missing} ${plural(missing,"карточка","карточки","карточек")} из плана уже не в выдаче: дедлайн прошёл или запись удалили.</p>` : ""}</section>`;
+}
+
+function viewCalendar(){
+  const ev = [];
+  base().forEach(e => {
+    if (e.dl_iso && daysTo(e.dl_iso) >= 0) ev.push({e, d:e.dl_iso, kind:"Дедлайн"});
+    if (e.start_iso && daysTo(e.start_iso) >= 0) ev.push({e, d:e.start_iso, kind:"Старт"});
+  });
+  ev.sort((a,b) => a.d.localeCompare(b.d));
+  const groups = {};
+  ev.forEach(x => { const k = x.d.slice(0,7); (groups[k] = groups[k] || []).push(x); });
+  const html = Object.entries(groups).map(([k, xs]) => {
+    const [y,m] = k.split("-").map(Number);
+    return `<div class="month"><h3>${MONTHS[m-1]}<small>${y} · ${xs.length} ${plural(xs.length,"дата","даты","дат")}</small></h3><div>${xs.map(({e,d,kind}) => { const dd = parseD(d); return `<button class="ag" data-open="${e.id}"><span class="day">${dd.getDate()}<small>${WD[dd.getDay()]}</small></span><span><h4>${esc(e.title)}</h4><span class="note">${kind} · ${esc(e.org)}</span></span><span class="what c-${e.sec}">${SECS[e.sec].one}</span></button>`; }).join("")}</div></div>`;
+  }).join("");
+  return `<section><div class="cat-head"><div><span class="kick">Даты</span><h2>Календарь</h2><p>Дедлайны и даты начала по месяцам. Карточки без точной даты сюда не попадают — их ищи в каталоге.</p></div></div>
+    ${html || emptyState("Дат пока нет", "Как только у карточек появятся точные даты, они будут здесь.")}</section>`;
+}
+const emptyState = (h, p, extra="") => `<div class="none"><h3>${h}</h3><p>${p}</p>${extra}</div>`;
+
+/* ---------- drawer ---------- */
+function openCard(id){
+  const e = EV.find(x => x.id === id); if (!e) return;
+  const rows = [["Организатор", e.org], ["Дедлайн", dlText(e)], ["Даты", blank(e.dates) ? fmtD(e.start_iso) : e.dates], ["Место", e.place], ["Формат", e.fmt], ["Стоимость", e.cost], ["Кто может", e.cond], ["Для граждан РФ", e.rf], ["Интересы", (e.tags||[]).map(t => TAGS[t]).join(", ")], ["Источник", e.source]]
+    .filter(([,v]) => !blank(v));
+  const dr = $("#drawer");
+  dr.innerHTML = `<div class="dr-band c-${e.sec}"><button class="x" id="drClose" aria-label="Закрыть">×</button>${kick(e)}<h2 id="drTitle">${esc(e.title)}</h2><div class="org">Совпадение с интересами: ${e.rel}%</div></div>
+  <div class="dr-body">
+    ${blank(e.desc) ? "" : `<p>${esc(e.desc)}</p>`}
+    <dl>${rows.map(([k,v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <div><div class="mono" style="color:var(--mute);margin-bottom:8px">Статус в плане</div><div class="status-pick">${STATUSES.map(([s,l]) => `<button class="tog" data-setst="${s}" data-id="${e.id}" aria-pressed="${plan[e.id]===s}">${l}</button>`).join("")}${plan[e.id] ? `<button class="tog" data-setst="" data-id="${e.id}">Убрать</button>` : ""}</div></div>
+    <div class="acts"><a class="btn solid" href="${esc(e.url)}" target="_blank" rel="noopener">Официальная страница ↗</a>${e.dl_iso || e.start_iso ? `<button class="btn" data-ics="${e.id}">В календарь</button>` : ""}<button class="btn ghost" data-hide="${e.id}">Не интересно</button></div>
+    ${e.ok || e.source === "подборка" ? "" : `<p class="note">Карточка собрана автоматически. Перед подачей сверь даты и условия на официальной странице.</p>`}
+  </div>`;
+  dr.classList.add("on"); $("#scrim").classList.add("on"); dr.setAttribute("aria-hidden","false");
+  lastFocus = document.activeElement; $("#drClose").focus();
+}
+let lastFocus = null;
+function closeCard(){ const dr = $("#drawer"); dr.classList.remove("on"); $("#scrim").classList.remove("on"); dr.setAttribute("aria-hidden","true"); if (lastFocus) lastFocus.focus(); }
+
+/* ---------- ics ---------- */
+function ics(list){
+  const p = n => String(n).padStart(2,"0");
+  const stamp = new Date().toISOString().replace(/[-:]/g,"").slice(0,15) + "Z";
+  const esc2 = s => String(s||"").replace(/[\\;,]/g, m => "\\" + m).replace(/\n/g,"\\n");
+  const evs = [];
+  list.forEach(e => [["dl_iso","Дедлайн: "],["start_iso","Старт: "]].forEach(([f,pre]) => {
+    const d = parseD(e[f]); if (!d) return;
+    const n = new Date(d); n.setDate(n.getDate()+1);
+    const ds = x => `${x.getFullYear()}${p(x.getMonth()+1)}${p(x.getDate())}`;
+    evs.push(["BEGIN:VEVENT",`UID:${e.id}-${f}@radar`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${ds(d)}`,`DTEND;VALUE=DATE:${ds(n)}`,`SUMMARY:${esc2(pre + e.title)}`,`DESCRIPTION:${esc2((e.org||"") + "\n" + e.url)}`,`URL:${e.url}`,
+      ...(f === "dl_iso" ? ["BEGIN:VALARM","TRIGGER:-P3D","ACTION:DISPLAY","DESCRIPTION:Через 3 дня дедлайн","END:VALARM"] : []),"END:VEVENT"].join("\r\n"));
+  }));
+  download("radar.ics", ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Radar//RU","CALSCALE:GREGORIAN",...evs,"END:VCALENDAR"].join("\r\n"), "text/calendar");
+}
+function download(name, text, type){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name;
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+/* ---------- nav ---------- */
+function renderTabs(){
+  const b = base();
+  const n = k => b.filter(e => e.sec === k).length;
+  const planN = Object.keys(plan).filter(id => EV.some(e => e.id === id)).length;
+  const t = [["home","Выпуск"], ...Object.keys(SECS).map(k => ["sec:" + k, ({grant:"Гранты", case:"Кейсы", school:"Школы"})[k] || SECS[k].name, k]), ["calendar","Календарь"], ["plan", `Мой план`]];
+  $("#tabs").innerHTML = t.map(([v, label, k]) => {
+    const cur = v === "home" ? S.view === "home" : v.startsWith("sec:") ? (S.view === "catalog" && S.sec === k) : S.view === v;
+    const cnt = k ? n(k) : v === "plan" ? planN : null;
+    return `<button class="tab" role="listitem" data-tab="${v}" aria-current="${cur}">${k ? `<span class="sw" style="background:var(--${k})"></span>` : ""}${label}${cnt !== null ? ` <span class="n">${cnt}</span>` : ""}</button>`;
+  }).join("");
+}
+function render(scroll){
+  renderTabs();
+  const cur = document.querySelector('.tab[aria-current="true"]'); if (cur) cur.scrollIntoView({block:"nearest", inline:"center"});
+  $("#view").innerHTML = S.view === "home" ? viewHome() : S.view === "plan" ? viewPlan() : S.view === "calendar" ? viewCalendar() : viewCatalog();
+  if (scroll) { const top = $(".nav").offsetTop; if (window.scrollY > top) window.scrollTo({top, behavior:"instant"}); }
+}
+function go(view, sec){ S.view = view; S.sec = sec || null; S.shown = 24; render(true); try{ history.replaceState(null, "", "#" + (sec ? sec : view)); }catch(e){} }
+
+document.addEventListener("click", ev => {
+  const t = ev.target.closest("[data-tab],[data-open],[data-save],[data-go],[data-view],[data-tag],[data-sec],[data-fmt],[data-money],[data-dl],[data-setst],[data-ics],[data-hide],#moreBtn,#resetF,#icsPlan,#drClose,#scrim,#exportPlan,#showHidden,#region button");
+  if (!t) return;
+  if (t.dataset.tab){ const v = t.dataset.tab; v.startsWith("sec:") ? go("catalog", v.slice(4)) : go(v); return; }
+  if (t.dataset.save){ ev.stopPropagation(); const id = t.dataset.save; plan[id] ? delete plan[id] : (plan[id] = "want"); store.set("radar.plan", plan); render(); return; }
+  if (t.dataset.open){ openCard(t.dataset.open); return; }
+  if (t.dataset.go){ if (t.dataset.sort) S.sort = t.dataset.sort; go("catalog", t.dataset.go === "all" ? null : t.dataset.go); return; }
+  if (t.dataset.view){ go(t.dataset.view); return; }
+  if (t.dataset.tag !== undefined){ const k = t.dataset.tag; S.tags = S.tags.includes(k) ? S.tags.filter(x => x !== k) : [...S.tags, k]; S.shown = 24; render(); return; }
+  if (t.dataset.sec !== undefined){ S.sec = t.dataset.sec || null; S.shown = 24; render(); return; }
+  if (t.dataset.fmt){ S.fmt = S.fmt === t.dataset.fmt ? "all" : t.dataset.fmt; render(); return; }
+  if (t.dataset.money){ S.money = S.money === t.dataset.money ? "all" : t.dataset.money; render(); return; }
+  if (t.dataset.dl){ S.withDl = !S.withDl; render(); return; }
+  if (t.dataset.setst !== undefined){ const id = t.dataset.id; t.dataset.setst ? plan[id] = t.dataset.setst : delete plan[id]; store.set("radar.plan", plan); render(); openCard(id); return; }
+  if (t.dataset.ics){ ics([EV.find(e => e.id === t.dataset.ics)]); return; }
+  if (t.dataset.hide){ hidden[t.dataset.hide] = 1; store.set("radar.hidden", hidden); closeCard(); render(); return; }
+  if (t.id === "moreBtn"){ S.shown += 24; render(); return; }
+  if (t.id === "resetF"){ Object.assign(S, {q:"", tags:[], fmt:"all", money:"all", withDl:false, sec:null}); render(); return; }
+  if (t.id === "icsPlan"){ ics(EV.filter(e => plan[e.id])); return; }
+  if (t.id === "drClose" || t.id === "scrim"){ closeCard(); return; }
+  if (t.id === "exportPlan"){ download("my-plan.json", JSON.stringify(EV.filter(e => plan[e.id]).map(e => ({...e, status:plan[e.id]})), null, 1), "application/json"); return; }
+  if (t.id === "showHidden"){ hidden = {}; store.set("radar.hidden", hidden); render(); return; }
+  if (t.dataset.r){ S.region = t.dataset.r; document.querySelectorAll("#region button").forEach(b => b.setAttribute("aria-pressed", b === t)); render(); return; }
+});
+document.addEventListener("change", ev => {
+  if (ev.target.id === "sort"){ S.sort = ev.target.value; render(); }
+  if (ev.target.dataset.status !== undefined){ const id = ev.target.dataset.status; ev.target.value ? plan[id] = ev.target.value : delete plan[id]; store.set("radar.plan", plan); render(); }
+});
+let qT;
+document.addEventListener("input", ev => {
+  if (ev.target.id !== "q") return;
+  clearTimeout(qT); qT = setTimeout(() => { S.q = ev.target.value; S.shown = 24; const pos = ev.target.selectionStart; render(); const q = $("#q"); q.focus(); q.setSelectionRange(pos, pos); }, 180);
+});
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape" && $("#drawer").classList.contains("on")) closeCard();
+  if ((ev.key === "Enter" || ev.key === " ") && ev.target.matches("[data-open][role=button]")) { ev.preventDefault(); openCard(ev.target.dataset.open); }
+});
+
+/* ---------- boot ---------- */
+const newsLoad = fetch("news.json").then(r=>r.json()).catch(() => null);
+fetch("events.json").then(r=>r.json()).then(async data => {
+  NEWS = await newsLoad;
+  const list = Array.isArray(data) ? data : (data.events || []);
+  META = Array.isArray(data) ? {} : data;
+  EV = list.map((e, i) => ({...e, id: e.id || "e" + i, sec: e.sec === "summit" ? "conf" : (SECS[e.sec] ? e.sec : "other"),
+    region: e.region || (e.country === "Россия" ? "ru" : "intl"), rel: e.rel ?? 50, tags: e.tags || []}))
+    .filter(e => { const d = daysTo(e.dl_iso); return d === null || d >= 0; });
+  const upd = META.updated_iso ? parseD(META.updated_iso) : TODAY;
+  const start = new Date(2026, 0, 1);
+  $("#issue").textContent = `Выпуск № ${Math.max(1, Math.round((upd - start) / 864e5) + 1)} · ${TODAY.getDate()} ${MGEN[TODAY.getMonth()]} ${TODAY.getFullYear()}`;
+  $("#upd").textContent = `${EV.length} ${plural(EV.length,"возможность","возможности","возможностей")}${META.updated ? " · обновлено " + META.updated : ""}`;
+  const h = (location.hash || "").slice(1);
+  if (SECS[h]) { S.view = "catalog"; S.sec = h; } else if (["plan","calendar","all"].includes(h)) S.view = h === "all" ? "catalog" : h;
+  render();
+}).catch(() => {
+  $("#view").innerHTML = emptyState("Не удалось загрузить данные", "Файл events.json не найден. Если открываешь сайт с компьютера, используй docs/radar.html — в нём данные уже внутри.");
+});
+})();
+</script>
+</body>
+</html>

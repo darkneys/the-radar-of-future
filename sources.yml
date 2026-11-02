@@ -2,7 +2,7 @@
 # type: telegram  -> читает публичный канал через t.me/s/<channel>
 # type: rss       -> читает RSS-ленту (list_url = адрес ленты)
 # type: site      -> сначала ищет на странице разметку JSON-LD (Event), потом пробует CSS-селекторы
-# sec: intern | school | summit | case   (раздел сайта по умолчанию)
+# sec: conf | grant | case | intern | school | other   (раздел сайта по умолчанию; старое summit = conf)
 # include: слова-фильтры (регулярка), посты без них пропускаются
 defaults:
   max_age_days: 90
@@ -83,4 +83,35 @@ sources:
     rf: проверить
     tr: проверить
     enabled: true
+
+
+  # ---------- Telegram: агрегаторы возможностей ----------
+  - {name: "Стадика (TG)", type: telegram, channel: studyqa, org: Стадика, sec: grant, country: Международно, rf: проверить, tr: проверить}
+  - {name: "СберСтудент (TG)", type: telegram, channel: SberStudent, org: Сбер, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Бизнес-клуб МГУ (TG)", type: telegram, channel: bcmsu, org: Бизнес-клуб МГУ, sec: conf, country: Россия, rf: да, tr: проверить}
+  - {name: "CareerMSU (TG)", type: telegram, channel: careermsu, org: МГУ, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Центр карьеры МГИМО (TG)", type: telegram, channel: mgimo_career, org: МГИМО, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Финунивер, центр карьеры (TG)", type: telegram, channel: FinCareer, org: Финансовый университет, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "РЭШ Карьера (TG)", type: telegram, channel: nes_cdlc, org: РЭШ, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Changellenge >> (TG)", type: telegram, channel: changellenge, org: Changellenge >>, sec: case, country: Россия, rf: да, tr: проверить}
+  - {name: "CASE-IN (TG)", type: telegram, channel: case_in, org: CASE-IN, sec: case, country: Россия, rf: да, tr: проверить}
+  - {name: "Яков и Партнёры (TG)", type: telegram, channel: YakovPartners, org: Яков и Партнёры, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Альфа-Будущее (TG)", type: telegram, channel: alfafuture, org: Альфа-Банк, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Т-Образование (TG)", type: telegram, channel: tbank_education, org: Т-Банк, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Careerspace (TG)", type: telegram, channel: careerspace, org: Careerspace, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "StudyGrants (TG)", type: telegram, channel: studygrants, org: StudyGrants, sec: grant, country: Международно, rf: проверить, tr: проверить}
+  - {name: "Гранты/Стипендии (TG)", type: telegram, channel: grantscholar, org: Гранты/Стипендии, sec: grant, country: Международно, rf: проверить, tr: проверить}
+  - {name: "Grantium (TG)", type: telegram, channel: grantium, org: Grantium, sec: grant, country: Международно, rf: проверить, tr: проверить}
+  - {name: "EduTraveler (TG)", type: telegram, channel: edu_traveler, org: EduTraveler, sec: grant, country: Международно, rf: проверить, tr: проверить}
+  - {name: "Хакатоны (TG)", type: telegram, channel: hackathons, org: Hackathon list, sec: other, country: Россия, rf: да, tr: проверить, include: "кейс|хакатон|чемпионат|hackathon"}
+  # ---------- Агрегаторы и ленты ----------
+  - {name: "FutureToday: стажировки", type: futuretoday, list_url: "https://fut.ru/internship", org: FutureToday, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "FutureToday: финансы", type: futuretoday, list_url: "https://fut.ru/tags/finance", org: FutureToday, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "FutureToday: консалтинг и аудит", type: futuretoday, list_url: "https://fut.ru/tags/consulting-audit", org: FutureToday, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "FutureToday: Москва без опыта", type: futuretoday, list_url: "https://fut.ru/tags/stazhirovka-vakansiya-moskva-bez-opyta", org: FutureToday, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "FutureToday: IT", type: futuretoday, list_url: "https://it.fut.ru/internship", org: FutureToday, sec: intern, country: Россия, rf: да, tr: проверить}
+  - {name: "Bustler: архитектурные конкурсы", type: rss, list_url: "https://bustler.net/feed/competitions", org: Bustler, sec: other, country: Международно, rf: проверить, tr: проверить, include: "student", min_score: 3}
+  - {name: "Forma: конкурсы для студентов", type: site, list_url: "https://www.forma.spb.ru/Competitions_new/dir/pin/competitions-students/", org: Forma, sec: other, country: Россия, rf: да, tr: проверить}
+  - {name: "Totalarch: конкурсы", type: site, list_url: "https://totalarch.com/architectural_competitions", org: Totalarch, sec: other, country: Россия, rf: да, tr: проверить}
+  - {name: "ArdExpert: конкурсы", type: site, list_url: "https://ardexpert.ru/contests", org: ArdExpert, sec: other, country: Россия, rf: да, tr: проверить}
 
